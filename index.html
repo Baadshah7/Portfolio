@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baadshah | Cybersecurity Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Dashboard/Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style Injection for Custom Theme Variables & Animations -->
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate900: '#0F172A',
+                        slate800: '#1E293B',
+                        slate700: '#334155',
+                        bluePrimary: '#3B82F6',
+                        textLight: '#F8FAFC',
+                        textMuted: '#94A3B8'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate900 text-textLight font-sans antialiased selection:bg-bluePrimary selection:text-white">
+
+    <!-- 🖥️ NAVBAR -->
+    <nav class="sticky top-0 z-50 bg-slate900/80 backdrop-blur-md border-b border-slate800 current-nav shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0 flex items-center space-x-2">
+                    <i class="fa-solid fa-shield-halved text-bluePrimary text-xl"></i>
+                    <span class="font-mono font-bold tracking-wider text-sm sm:text-base">SEC_DASH // BAADSHAH</span>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex space-x-4 text-sm font-medium">
+                    <a href="#home" class="text-textLight hover:text-bluePrimary px-3 py-2 transition-colors">Home</a>
+                    <a href="#about" class="text-textMuted hover:text-bluePrimary px-3 py-2 transition-colors">About</a>
+                    <a href="#skills"
+                        class="text-textMuted hover:text-bluePrimary px-3 py-2 transition-colors">Skills</a>
+                    <a href="#projects"
+                        class="text-textMuted hover:text-bluePrimary px-3 py-2 transition-colors">Projects</a>
+                    <a href="#labs" class="text-textMuted hover:text-bluePrimary px-3 py-2 transition-colors">Labs</a>
+                    <a href="#certifications"
+                        class="text-textMuted hover:text-bluePrimary px-3 py-2 transition-colors">Certs</a>
+                    <a href="#contact"
+                        class="text-textMuted hover:text-bluePrimary px-3 py-2 transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Socials / Call Actions -->
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com" target="_blank"
+                        class="text-textMuted hover:text-bluePrimary text-lg transition-colors" aria-label="GitHub"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank"
+                        class="text-textMuted hover:text-bluePrimary text-lg transition-colors" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="resume/resume.pdf" download
+                        class="hidden sm:inline-flex items-center justify-center px-3 py-1.5 border border-bluePrimary text-xs font-medium rounded text-bluePrimary hover:bg-bluePrimary hover:text-white transition-all"><i
+                            class="fa-solid fa-download mr-1.5"></i> CV</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🏠 HOME / HERO SECTION -->
+    <section id="home"
+        class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8 pb-16">
+        <!-- Left Side Context -->
+        <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+            <div
+                class="inline-flex items-center space-x-2 bg-bluePrimary/10 border border-bluePrimary/20 px-3 py-1 rounded-full text-xs text-bluePrimary font-mono w-max">
+                <span class="flex h-2 w-2 relative">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-bluePrimary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-bluePrimary"></span>
+                </span>
+                <span>Ready for Security Operations</span>
+            </div>
+
+            <div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+                    Hi, I'm <span class="text-bluePrimary">Baadshah</span>.
+                </h1>
+                <h2 class="text-xl sm:text-2xl font-semibold mt-3 text-slate-300">
+                    Cybersecurity Student & <span
+                        class="text-bluePrimary border-r-2 border-bluePrimary animate-pulse pr-1"
+                        id="typing-text">Digital Forensics Enthusiast</span>
+                </h2>
+            </div>
+
+            <p class="text-textMuted max-w-xl text-base sm:text-lg leading-relaxed">
+                B.E. Information Technology Student passionate about Cybersecurity, Digital Forensics, Network Security,
+                and Ethical Hacking. I enjoy solving security challenges, performing vulnerability assessments, and
+                continuously improving my defensive and offensive security skills.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+                <a href="#projects"
+                    class="px-6 py-3 bg-bluePrimary hover:bg-blue-600 text-white font-medium rounded shadow-lg shadow-bluePrimary/20 transition-all transform hover:-translate-y-0.5">
+                    View Projects <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <a href="resume/resume.pdf" download
+                    class="px-6 py-3 bg-slate800 hover:bg-slate700 text-textLight font-medium rounded border border-slate700 transition-all transform hover:-translate-y-0.5">
+                    Download Resume
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Side: Graphic Visual (SOC Shield Illustration) -->
+        <div class="lg:col-span-5 flex items-center justify-center">
+            <div
+                class="relative w-full max-w-[360px] aspect-square bg-gradient-to-br from-bluePrimary/20 to-transparent rounded-2xl border border-slate800 flex items-center justify-center p-8 shadow-2xl group">
+                <!-- Decorative Grid Background inside the image block -->
+                <div
+                    class="absolute inset-0 bg-[linear-gradient(to_right,#33415510_1px,transparent_1px),linear-gradient(to_bottom,#33415510_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] rounded-2xl">
+                </div>
+                <!-- Core Dashboard Visual Elements -->
+                <div class="relative flex flex-col items-center text-center space-y-4">
+                    <div
+                        class="w-24 h-24 rounded-full bg-slate800 border-2 border-bluePrimary flex items-center justify-center text-bluePrimary text-4xl shadow-lg shadow-bluePrimary/10 group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="font-mono text-xs text-bluePrimary">MONITOR_STATUS: ACTIVE</p>
+                        <p class="text-sm text-textMuted">Threat Detection & Lab Simulation Environment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📊 SECTION 2: QUICK STATS -->
+    <section class="bg-slate800/50 border-y border-slate800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 bg-slate800 rounded-xl border border-slate700/50">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-bluePrimary font-mono">20+</p>
+                    <p class="text-xs sm:text-sm text-textMuted uppercase tracking-wider mt-1">TryHackMe Rooms</p>
+                </div>
+                <div class="p-6 bg-slate800 rounded-xl border border-slate700/50">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-bluePrimary font-mono">15+</p>
+                    <p class="text-xs sm:text-sm text-textMuted uppercase tracking-wider mt-1">Projects Completed</p>
+                </div>
+                <div class="p-6 bg-slate800 rounded-xl border border-slate700/50">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-bluePrimary font-mono">10+</p>
+                    <p class="text-xs sm:text-sm text-textMuted uppercase tracking-wider mt-1">Tools Utilized</p>
+                </div>
+                <div class="p-6 bg-slate800 rounded-xl border border-slate700/50">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-bluePrimary font-mono">5+</p>
+                    <p class="text-xs sm:text-sm text-textMuted uppercase tracking-wider mt-1">Certifications</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 👨‍💻 ABOUT SECTION -->
+    <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Left Grid: Minimal Professional Identity Visual -->
+            <div class="lg:col-span-4 flex justify-center">
+                <div
+                    class="w-64 h-64 bg-slate800 border-2 border-slate700 rounded-2xl flex flex-col items-center justify-center p-6 relative overflow-hidden shadow-xl">
+                    <i class="fa-solid fa-user-shield text-6xl text-slate-600 mb-4"></i>
+                    <span class="font-mono text-sm tracking-widest text-textMuted">STUDENT_ID // B.E. IT</span>
+                    <div class="absolute bottom-0 inset-x-0 h-1.5 bg-bluePrimary"></div>
+                </div>
+            </div>
+
+            <!-- Right Grid: Narrative -->
+            <div class="lg:col-span-8 space-y-6">
+                <div>
+                    <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">01 // Profile</span>
+                    <h2 class="text-3xl font-bold mt-1">About Me</h2>
+                </div>
+                <p class="text-textMuted leading-relaxed">
+                    I am pursuing a Bachelor of Engineering in Information Technology. My primary interest lies in
+                    Cybersecurity, with a focus on Network Security, Digital Forensics, Incident Response, and
+                    Vulnerability Assessment.
+                </p>
+                <p class="text-textMuted leading-relaxed">
+                    I actively practice through TryHackMe labs, cybersecurity projects, and hands-on laboratory learning
+                    environments. My objective is to bridge the gap between theoretical computing frameworks and modern,
+                    defensive operational workflows.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="flex items-start space-x-3">
+                        <i class="fa-solid fa-graduation-cap text-bluePrimary mt-1"></i>
+                        <div>
+                            <h4 class="font-medium text-sm text-textLight">Education</h4>
+                            <p class="text-xs text-textMuted">B.E. Information Technology</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fa-solid fa-crosshairs text-bluePrimary mt-1"></i>
+                        <div>
+                            <h4 class="font-medium text-sm text-textLight">Targets / Objectives</h4>
+                            <p class="text-xs text-textMuted">SOC Analyst / Blue Team Engineering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="border-slate800 max-w-7xl mx-auto">
+
+    <!-- 🛠 SKILLS SECTION -->
+    <section id="skills" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">02 // Core Competencies</span>
+            <h2 class="text-3xl font-bold mt-1">Technical Skills Dashboard</h2>
+            <p class="text-textMuted mt-2 text-sm sm:text-base">Categorized capabilities verified via sandboxed
+                simulation execution and academic programs.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Networking Card -->
+            <div
+                class="bg-slate800 border border-slate700/50 p-6 rounded-xl hover:border-bluePrimary/40 transition-all duration-300">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary"><i
+                            class="fa-solid fa-network-wired"></i></div>
+                    <h3 class="font-bold text-base tracking-wide">Networking</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-textMuted font-mono">
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> TCP/IP</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> DNS</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> DHCP</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> HTTP / HTTPS</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Routing</li>
+                </ul>
+            </div>
+
+            <!-- OS Card -->
+            <div
+                class="bg-slate800 border border-slate700/50 p-6 rounded-xl hover:border-bluePrimary/40 transition-all duration-300">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary"><i
+                            class="fa-solid fa-terminal"></i></div>
+                    <h3 class="font-bold text-base tracking-wide">Operating Systems</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-textMuted font-mono">
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Windows</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Linux</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Kali Linux</li>
+                </ul>
+            </div>
+
+            <!-- Security Card -->
+            <div
+                class="bg-slate800 border border-slate700/50 p-6 rounded-xl hover:border-bluePrimary/40 transition-all duration-300">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary"><i
+                            class="fa-solid fa-lock"></i></div>
+                    <h3 class="font-bold text-base tracking-wide">Security</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-textMuted font-mono">
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Vuln Assessment</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Network Security</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Web App Security</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Incident Response</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Digital Forensics</li>
+                </ul>
+            </div>
+
+            <!-- Tools Card -->
+            <div
+                class="bg-slate800 border border-slate700/50 p-6 rounded-xl hover:border-bluePrimary/40 transition-all duration-300">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary"><i
+                            class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <h3 class="font-bold text-base tracking-wide">Tools & Language</h3>
+                </div>
+                <ul class="space-y-2 text-sm text-textMuted font-mono">
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Nmap / Wireshark</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Burp Suite</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Metasploit / Nessus
+                    </li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Autopsy</li>
+                    <li class="flex items-center"><i
+                            class="fa-solid fa-chevron-right text-xs text-bluePrimary mr-2"></i> Python / Bash / SQL
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr class="border-slate800 max-w-7xl mx-auto">
+
+    <!-- 🔥 PROJECT SECTION -->
+    <section id="projects" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">03 // Practical
+                    Evidence</span>
+                <h2 class="text-3xl font-bold mt-1">Featured Security Projects</h2>
+            </div>
+            <p class="text-textMuted max-w-md text-sm mt-2 md:mt-0">Detailed technical assessments documenting
+                vulnerability discovery, analysis methods, and tactical lessons learned.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div
+                class="bg-slate800 border border-slate700 rounded-xl overflow-hidden flex flex-col justify-between group hover:border-slate600 transition-all duration-300">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-mono uppercase bg-slate700 px-2 py-1 rounded text-bluePrimary">Lab
+                            Assessment</span>
+                        <i class="fa-solid fa-laptop-code text-textMuted text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-textLight">Network Vulnerability Assessment</h3>
+                    <p class="text-textMuted text-sm leading-relaxed">
+                        Performed vulnerability assessment on a simulated environment to identify open ports, legacy
+                        system configurations, and potential vector risks.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-mono bg-slate900 px-2 py-1 rounded text-textMuted">Nmap</span>
+                        <span class="text-xs font-mono bg-slate900 px-2 py-1 rounded text-textMuted">Nessus</span>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <button onclick="toggleModal('modal-p1')"
+                        class="w-full text-center px-4 py-2 border border-slate700 rounded text-sm font-medium text-textLight hover:bg-bluePrimary hover:border-bluePrimary transition-all">
+                        View Report Technical Specs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div
+                class="bg-slate800 border border-slate700 rounded-xl overflow-hidden flex flex-col justify-between group hover:border-slate600 transition-all duration-300">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-mono uppercase bg-slate700 px-2 py-1 rounded text-bluePrimary">Traffic
+                            Audit</span>
+                        <i class="fa-solid fa-magnifying-glass-chart text-textMuted text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-textLight">Wireshark Packet Analysis</h3>
+                    <p class="text-textMuted text-sm leading-relaxed">
+                        Captured and analyzed network packets to identify protocol distribution, detect anomalous
+                        requests, and investigate overall payload behaviors.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-mono bg-slate900 px-2 py-1 rounded text-textMuted">Wireshark</span>
+                        <span class="text-xs font-mono bg-slate900 px-2 py-1 rounded text-textMuted">PCAP</span>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <button onclick="toggleModal('modal-p2')"
+                        class="w-full text-center px-4 py-2 border border-slate700 rounded text-sm font-medium text-textLight hover:bg-bluePrimary hover:border-bluePrimary transition-all">
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div
+                class="bg-slate800 border border-slate700 rounded-xl overflow-hidden flex flex-col justify-between group hover:border-slate600 transition-all duration-300">
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-mono uppercase bg-slate700 px-2 py-1 rounded text-bluePrimary">Hardening</span>
+                        <i class="fa-solid fa-server text-textMuted text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-textLight">Linux Security Hardening</h3>
+                    <p class="text-textMuted text-sm leading-relaxed">
+                        Implemented precise baseline access controls, audited user configurations, and optimized
+                        defensive configurations on Linux infrastructure setups.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs font-mono bg-slate900 px-2 py-1 rounded text-textMuted">Linux OS</span>
+                        <span class="text-xs font-mono bg-slate900 px-2 py-1 rounded text-textMuted">Bash
+                            Security</span>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <button onclick="toggleModal('modal-p3')"
+                        class="w-full text-center px-4 py-2 border border-slate700 rounded text-sm font-medium text-textLight hover:bg-bluePrimary hover:border-bluePrimary transition-all">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 💡 TECHNICAL PROJECT MODAL WINDOW EXAMPLES (Recruiters expect deep data) -->
+    <!-- Modal 1 -->
+    <div id="modal-p1"
+        class="fixed inset-0 z-50 overflow-y-auto hidden bg-slate900/90 flex items-center justify-center p-4">
+        <div class="bg-slate800 border border-slate700 max-w-2xl w-full rounded-xl p-6 sm:p-8 space-y-4 relative">
+            <button onclick="toggleModal('modal-p1')"
+                class="absolute top-4 right-4 text-textMuted hover:text-white text-xl">&times;</button>
+            <h3 class="text-2xl font-bold text-bluePrimary">Network Vulnerability Assessment Report</h3>
+            <div class="space-y-3 font-sans text-sm text-textMuted">
+                <p><strong class="text-textLight font-mono">Objective:</strong> Identify vulnerabilities within a
+                    simulated enterprise network environment.</p>
+                <p><strong class="text-textLight font-mono">Tools:</strong> Nmap, Nessus</p>
+                <div>
+                    <strong class="text-textLight font-mono">Methodology:</strong>
+                    <ul class="list-disc list-inside ml-2">
+                        <li>Host Discovery</li>
+                        <li>Port Scanning & Service Enumeration</li>
+                        <li>Automated Vulnerability Mapping & Evaluation</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong class="text-textLight font-mono">Findings:</strong>
+                    <p class="bg-slate900 p-2 rounded text-xs font-mono border border-slate700 text-red-400 mt-1">
+                        [-] Open SSH Service identified on Port 22 with weak algorithmic support.<br>
+                        [-] Critical misconfiguration allowing unauthorized exposure configurations.
+                    </p>
+                </div>
+                <p><strong class="text-textLight font-mono">Skills Learned:</strong> Targeted Enumeration, Corporate
+                    Risk Analysis, Professional Technical Report Formulation.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal-p2"
+        class="fixed inset-0 z-50 overflow-y-auto hidden bg-slate900/90 flex items-center justify-center p-4">
+        <div class="bg-slate800 border border-slate700 max-w-2xl w-full rounded-xl p-6 sm:p-8 space-y-4 relative">
+            <button onclick="toggleModal('modal-p2')"
+                class="absolute top-4 right-4 text-textMuted hover:text-white text-xl">&times;</button>
+            <h3 class="text-2xl font-bold text-bluePrimary">Wireshark Packet Analysis</h3>
+            <div class="space-y-3 font-sans text-sm text-textMuted">
+                <p><strong class="text-textLight font-mono">Objective:</strong> Isolate malicious patterns inside
+                    capture environments.</p>
+                <p><strong class="text-textLight font-mono">Tools:</strong> Wireshark</p>
+                <p><strong class="text-textLight font-mono">Methodology:</strong> Logged ingress/egress frame requests,
+                    analyzed handshakes, and parsed unencrypted payload strings using specialized filters.</p>
+                <p><strong class="text-textLight font-mono">Findings:</strong> Detected cleartext configurations exposed
+                    via legacy systems and flag behaviors mapping to active enumeration attempts.</p>
+                <p><strong class="text-textLight font-mono">Skills Learned:</strong> Network protocol baseline
+                    diagnostics, traffic analysis, capture signature extraction.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="modal-p3"
+        class="fixed inset-0 z-50 overflow-y-auto hidden bg-slate900/90 flex items-center justify-center p-4">
+        <div class="bg-slate800 border border-slate700 max-w-2xl w-full rounded-xl p-6 sm:p-8 space-y-4 relative">
+            <button onclick="toggleModal('modal-p3')"
+                class="absolute top-4 right-4 text-textMuted hover:text-white text-xl">&times;</button>
+            <h3 class="text-2xl font-bold text-bluePrimary">Linux Security Hardening</h3>
+            <div class="space-y-3 font-sans text-sm text-textMuted">
+                <p><strong class="text-textLight font-mono">Objective:</strong> Remediate weak defaults and enforce
+                    access controls across standard Linux distributions.</p>
+                <p><strong class="text-textLight font-mono">Tools:</strong> Built-In Linux Security Tools, Custom
+                    Auditing Shell Scripts</p>
+                <p><strong class="text-textLight font-mono">Methodology:</strong> Disabled insecure accounts, verified
+                    strict file permission matrices, restricted SSH access paths, and audited system authorization logs.
+                </p>
+                <p><strong class="text-textLight font-mono">Findings:</strong> Reduced local attack vectors by locking
+                    down orphan accounts and preventing insecure vertical escalation points.</p>
+                <p><strong class="text-textLight font-mono">Skills Learned:</strong> Identity & Access Management (IAM),
+                    baseline audit defense, configuration verification.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="border-slate800 max-w-7xl mx-auto">
+
+    <!-- 🚩 TRYHACKME LABS SECTION -->
+    <section id="labs" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">04 // Practical
+                Verification</span>
+            <h2 class="text-3xl font-bold mt-1">TryHackMe Labs & Progress</h2>
+            <p class="text-textMuted mt-2 text-sm sm:text-base">Continuous capability growth via interactive structured
+                labs.</p>
+        </div>
+
+        <div
+            class="bg-slate800 border border-slate700 rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-4 text-center lg:text-left space-y-4">
+                <div
+                    class="inline-flex items-center justify-center w-16 h-16 bg-red-500/10 text-red-500 rounded-xl text-3xl mb-2">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <h3 class="text-2xl font-bold">TryHackMe Platform Track</h3>
+                <p class="text-textMuted text-sm leading-relaxed">
+                    Completing fundamental and defensive modules to ensure strong theoretical application in real-world
+                    infrastructure defense scenarios.
+                </p>
+            </div>
+
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Room Card 1 -->
+                <div class="bg-slate900 border border-slate700 p-4 rounded-xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-bold text-textLight">Linux Fundamentals</span>
+                        <span class="text-xs text-green-400 font-mono"><i class="fa-solid fa-circle-check"></i> 100%
+                            Verified</span>
+                    </div>
+                    <p class="text-xs text-textMuted">Skills: Shell navigation, access controls, directory architecture
+                        exploitation.</p>
+                </div>
+                <!-- Room Card 2 -->
+                <div class="bg-slate900 border border-slate700 p-4 rounded-xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-bold text-textLight">Network Fundamentals</span>
+                        <span class="text-xs text-green-400 font-mono"><i class="fa-solid fa-circle-check"></i> 100%
+                            Verified</span>
+                    </div>
+                    <p class="text-xs text-textMuted">Skills: Protocol tracking, infrastructure communication
+                        diagnostics, packet parsing.</p>
+                </div>
+                <!-- Room Card 3 -->
+                <div class="bg-slate900 border border-slate700 p-4 rounded-xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-bold text-textLight">Pre Security Path</span>
+                        <span class="text-xs text-green-400 font-mono"><i class="fa-solid fa-circle-check"></i> 100%
+                            Verified</span>
+                    </div>
+                    <p class="text-xs text-textMuted">Skills: Foundational networking concepts, web infrastructure
+                        foundations.</p>
+                </div>
+                <!-- Room Card 4 -->
+                <div class="bg-slate900 border border-slate700 p-4 rounded-xl">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-bold text-textLight">Web Fundamentals</span>
+                        <span class="text-xs text-bluePrimary font-mono"><i
+                                class="fa-solid fa-spinner animate-spin"></i> In Progress</span>
+                    </div>
+                    <p class="text-xs text-textMuted">Skills: Web application architecture analysis, injection logic
+                        evaluation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="border-slate800 max-w-7xl mx-auto">
+
+    <!-- 📜 CERTIFICATION SECTION -->
+    <section id="certifications" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">05 // Industry Credentials</span>
+            <h2 class="text-3xl font-bold mt-1">Certifications Registry</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Active Certificate -->
+            <div class="bg-slate800 border border-bluePrimary/30 p-6 rounded-xl relative flex flex-col justify-between">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-award text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-textLight">Generative AI Workshop</h4>
+                    <p class="text-xs font-mono text-textMuted">Issued: Academic Cohort</p>
+                </div>
+                <a href="#" class="mt-4 text-xs font-medium text-bluePrimary hover:underline flex items-center">
+                    View Certificate <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </a>
+            </div>
+
+            <!-- Future Track placeholders to prove long-term professional planning to recruiters -->
+            <div class="bg-slate800/40 border border-slate800 p-6 rounded-xl opacity-60 flex flex-col justify-between">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-hourglass-start text-slate-500 text-3xl mb-1"></i>
+                    <h4 class="font-bold text-slate-400">Google Cybersecurity Professional</h4>
+                    <p class="text-xs font-mono text-textMuted">Target Schedule: In Training</p>
+                </div>
+            </div>
+            <div class="bg-slate800/40 border border-slate800 p-6 rounded-xl opacity-60 flex flex-col justify-between">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-hourglass-start text-slate-500 text-3xl mb-1"></i>
+                    <h4 class="font-bold text-slate-400">CompTIA Security+</h4>
+                    <p class="text-xs font-mono text-textMuted">Target Schedule: Slated Q4</p>
+                </div>
+            </div>
+            <div class="bg-slate800/40 border border-slate800 p-6 rounded-xl opacity-60 flex flex-col justify-between">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-hourglass-start text-slate-500 text-3xl mb-1"></i>
+                    <h4 class="font-bold text-slate-400">ISC2 Certified in Cybersecurity</h4>
+                    <p class="text-xs font-mono text-textMuted">Target Schedule: Planned Pipeline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📞 CONTACT & RESUME FOOTER SEGMENT -->
+    <section id="contact" class="bg-slate800/40 border-t border-slate800 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Information Panel -->
+            <div class="lg:col-span-5 space-y-6">
+                <div>
+                    <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">06 //
+                        Communication</span>
+                    <h2 class="text-3xl font-bold mt-1">Get In Touch</h2>
+                    <p class="text-textMuted mt-2 text-sm leading-relaxed">
+                        Open for networking opportunities, internship positions, and collaborative academic research
+                        environments. Drop a message or connect directly via social streams.
+                    </p>
+                </div>
+
+                <!-- Explicit CV Downloads Area right where the recruiter makes a choice -->
+                <div class="p-4 bg-slate800 border border-slate700 rounded-xl space-y-3">
+                    <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-textLight">Verification
+                        Documents</h4>
+                    <div class="flex gap-4">
+                        <a href="resume/resume.pdf" target="_blank"
+                            class="flex-1 text-center bg-bluePrimary text-white font-medium text-xs py-2.5 rounded hover:bg-blue-600 transition-colors">
+                            View Embedded Resume
+                        </a>
+                        <a href="resume/resume.pdf" download
+                            class="flex-1 text-center bg-slate700 text-textLight font-medium text-xs py-2.5 rounded border border-slate600 hover:bg-slate600 transition-colors">
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Structural Info Elements -->
+                <div class="space-y-3 font-mono text-xs text-textMuted">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-envelope text-bluePrimary w-4"></i>
+                        <span>baadshah@example.com</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-location-dot text-bluePrimary w-4"></i>
+                        <span>Engineering Campus Hub, India</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Interface -->
+            <div class="lg:col-span-7 bg-slate800 border border-slate700 p-6 sm:p-8 rounded-2xl">
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label class="block font-mono text-xs text-textMuted uppercase tracking-wider mb-1">Identifier /
+                            Full Name</label>
+                        <input type="text" required
+                            class="w-full bg-slate900 border border-slate700 rounded p-2.5 text-sm text-textLight focus:outline-none focus:border-bluePrimary transition-colors"
+                            placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block font-mono text-xs text-textMuted uppercase tracking-wider mb-1">Return Email
+                            Channel Address</label>
+                        <input type="email" required
+                            class="w-full bg-slate900 border border-slate700 rounded p-2.5 text-sm text-textLight focus:outline-none focus:border-bluePrimary transition-colors"
+                            placeholder="johndoe@example.com">
+                    </div>
+                    <div>
+                        <label class="block font-mono text-xs text-textMuted uppercase tracking-wider mb-1">Transmission
+                            Context Address / Message</label>
+                        <textarea rows="4" required
+                            class="w-full bg-slate900 border border-slate700 rounded p-2.5 text-sm text-textLight focus:outline-none focus:border-bluePrimary transition-colors"
+                            placeholder="Your target deployment parameters..."></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-3 bg-bluePrimary hover:bg-blue-600 text-white font-medium rounded transition-colors text-sm font-mono tracking-wider">
+                        SEND MESSAGE <i class="fa-solid fa-paper-plane ml-1 text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 👤 FOOTER -->
+    <footer class="bg-slate900 py-6 border-t border-slate800/80 text-center text-xs font-mono text-textMuted">
+        <p>&copy; 2026 Baadshah. Built with Tailwind CSS. Core Infrastructure Verified.</p>
+    </footer>
+
+    <!-- Script Application -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
