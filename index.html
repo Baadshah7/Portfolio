@@ -31,7 +31,6 @@
     <nav class="sticky top-0 z-50 bg-slate900/80 backdrop-blur-md border-b border-slate800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <!-- Added blue color transition on logo hover -->
                 <a href="#home"
                     class="flex-shrink-0 flex items-center space-x-2 text-textLight hover:text-bluePrimary transition-colors duration-200 group">
                     <i
@@ -69,7 +68,6 @@
         </div>
     </nav>
 
-    <!-- HOME (HERO) SECTION -->
     <section id="home"
         class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8 pb-16">
         <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
@@ -131,15 +129,32 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-4 flex justify-center">
                 <div
-                    class="w-64 h-64 bg-slate800 border-2 border-slate700 rounded-2xl flex flex-col items-center justify-center p-6 relative overflow-hidden shadow-xl">
-                    <i class="fa-solid fa-user-shield text-6xl text-slate-600 mb-4"></i>
-                    <span class="font-mono text-sm tracking-widest text-textMuted">TCET // IT_STUDENT</span>
-                    <div class="absolute bottom-0 inset-x-0 h-1.5 bg-bluePrimary"></div>
+                    class="w-64 h-80 bg-slate800/40 backdrop-blur-md border border-slate700/60 rounded-2xl flex flex-col items-center justify-between p-4 relative overflow-hidden shadow-2xl group transition-all duration-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)]">
+
+                    <div
+                        class="w-full h-[82%] rounded-xl overflow-hidden relative border border-slate700/40 bg-slate900">
+                        <img src="images/saad_shah.jpg" alt="Saad Shah Profile"
+                            class="w-full h-full object-cover filter grayscale contrast-110 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+                            onerror="this.src='images/cert_placeholder.jpg'; this.onerror=null;">
+                        <div
+                            class="absolute inset-0 bg-bluePrimary/5 mix-blend-color pointer-events-none group-hover:bg-transparent transition-all duration-500">
+                        </div>
+                    </div>
+
+                    <div class="w-full text-center pb-1">
+                        <span
+                            class="font-mono text-xs tracking-widest text-textMuted group-hover:text-bluePrimary transition-colors duration-300">
+                            TCET // IT_STUDENT
+                        </span>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-bluePrimary to-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
                 </div>
             </div>
 
@@ -150,15 +165,15 @@
                 </div>
                 <p class="text-textMuted leading-relaxed text-base sm:text-lg">
                     I am a final-year <strong>B.E. Information Technology</strong> student at <strong>Thakur College of
-                        Engineering & Technology</strong>. Driven by the mission to secure the digital landscape, my
-                    primary objective is to build a core career in Cybersecurity, backed by a strong academic foundation
-                    and hands-on laboratory experience.
+                        Engineering & Technology</strong>. Driven by a deep curiosity for security frameworks and
+                    vulnerability mapping, my target is to establish a core career path in Cybersecurity and Digital
+                    Forensics where continuous learning directly translates to defensive resilience.
                 </p>
                 <p class="text-textMuted leading-relaxed text-base sm:text-lg">
-                    My core technical interest lies in <strong>Digital Forensics</strong>, network traffic auditing, and
-                    vulnerability assessment. Through extensive simulation environments and rooms on TryHackMe, I have
-                    developed a practical understanding of defensive strategies, malware mechanics, and forensic
-                    investigation techniques.
+                    Through structured hands-on laboratory sandboxes and academic benchmarks, I have developed a
+                    practical baseline in ethical hacking principles and network security routing. I thrive on breaking
+                    down complex digital challenges and am actively seeking an impactful
+                    collaborative ecosystem to contribute to meaningful security-focused operations.
                 </p>
             </div>
         </div>
@@ -166,7 +181,6 @@
 
     <hr class="border-slate800 max-w-7xl mx-auto">
 
-    <!-- SKILLS SECTION -->
     <section id="skills" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">02 // Core Competencies</span>
@@ -244,7 +258,6 @@
 
     <hr class="border-slate800 max-w-7xl mx-auto">
 
-    <!-- PROJECTS SECTION -->
     <section id="projects" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
@@ -304,39 +317,43 @@
 
     <hr class="border-slate800 max-w-7xl mx-auto">
 
-    <!-- LABS & COMPREHENSIVE TRYHACKME SECTION (Consolidated Layout) -->
     <section id="labs" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
             <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">04 // Cyber Sandbox</span>
             <h2 class="text-3xl font-bold mt-1">TryHackMe Laboratory Matrix</h2>
         </div>
 
-        <!-- Upper Grid Block: Real-Time Verification Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5 text-center">
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
-                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">Top 9%</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">Top 15%</p>
                 <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Global Rank</p>
             </div>
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
-                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">54</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">55</p>
                 <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Completed Rooms</p>
             </div>
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
-                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">50+</p>
-                <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Hands-on Labs</p>
+                <div class="flex items-baseline justify-center space-x-1">
+                    <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">14</p>
+                    <span class="text-[10px] text-orange-400 font-mono font-bold uppercase">Days</span>
+                </div>
+                <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Current Streak</p>
             </div>
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
-                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">7</p>
-                <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Verified Badges</p>
+                <div class="flex items-baseline justify-center space-x-1">
+                    <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">19</p>
+                    <span class="text-[10px] text-green-400 font-mono font-bold uppercase">Max</span>
+                </div>
+                <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Best Streak</p>
             </div>
         </div>
 
-        <!-- Lower Block: Tracks Dashboard Verification -->
         <div
             class="bg-slate800 border border-slate700 rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-4 space-y-2">
                 <h3 class="text-xl font-bold font-mono tracking-wide">Platform Tracks</h3>
-                <p class="text-textMuted text-sm">Verified curriculum sync & foundation line logging configuration.</p>
+                <p class="text-textMuted text-sm">Verified curriculum sync & foundation line logging configuration.
+                    Badges Unlocked: 7</p>
             </div>
 
             <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -360,7 +377,6 @@
 
     <hr class="border-slate800 max-w-7xl mx-auto">
 
-    <!-- CERTIFICATIONS SECTION -->
     <section id="certifications" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12">
             <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">05 // Credentials</span>
@@ -395,7 +411,6 @@
         </div>
     </div>
 
-    <!-- CONTACT SECTION -->
     <section id="contact" class="bg-slate800/40 border-t border-slate800 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div class="lg:col-span-5 space-y-6">
@@ -406,7 +421,7 @@
                 <div class="space-y-3 font-mono text-sm text-textMuted">
                     <div class="flex items-center space-x-2">
                         <i class="fa-solid fa-envelope text-bluePrimary w-4"></i>
-                        <span>saadshah@example.com</span>
+                        <a href="mailto:shahsaadcyber@gmail.com" class="hover:text-bluePrimary transition-colors">shahsaadcyber@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -436,8 +451,9 @@
         </div>
     </section>
 
-    <footer class="bg-slate900 py-6 border-t border-slate800/80 text-center text-xs font-mono text-textMuted">
-        <p>&copy; 2026 Saad Shah. Core Infrastructure Active.</p>
+    <footer class="bg-slate900 py-8 border-t border-slate800/80 text-center text-xs font-mono text-textMuted space-y-2">
+        <p>&copy; 2026 Saad Shah. All Rights Reserved.</p>
+        <p class="text-[10px] text-slate-500">Designed & Developed by Saad Shah | Security Operations Centered</p>
     </footer>
 
     <script>
