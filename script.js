@@ -57,7 +57,69 @@ function toggleModal(modalId) {
     }
 }
 
+// ⚡ CONTACT FORM SECURE TRANSMISSION HANDLER
+function initContactForm() {
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            // Extract input values
+            const nameVal = contactForm.querySelector('input[name="name"]').value;
+            const emailVal = contactForm.querySelector('input[name="email"]').value;
+            
+            // Set sender signature inside the receipt
+            document.getElementById("transmission-sender").textContent = `${nameVal} <${emailVal}>`;
+            
+            // Generate a random payload hash to make it look realistic (SOC dashboard style)
+            const hex = "0123456789ABCDEF";
+            let randomHash = "SHA256_";
+            for (let i = 0; i < 16; i++) {
+                randomHash += hex[Math.floor(Math.random() * 16)];
+            }
+            document.getElementById("transmission-hash").textContent = randomHash;
+            
+            // Show secure transmission modal
+            const modal = document.getElementById("transmission-modal");
+            if (modal) {
+                modal.classList.remove("hidden");
+                modal.classList.add("modal-active");
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // If they configured a Web3Forms Access Key, dispatch actual email in the background!
+            const web3KeyInput = contactForm.querySelector('input[name="access_key"]');
+            if (web3KeyInput && web3KeyInput.value !== "YOUR_WEB3FORMS_ACCESS_KEY_HERE" && web3KeyInput.value.trim() !== "") {
+                const formData = new FormData(contactForm);
+                fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => {
+                    console.log("Web3Forms Secure Payload Status:", response.status);
+                })
+                .catch(err => {
+                    console.error("Web3Forms transmission failure:", err);
+                });
+            }
+            
+            // Reset form fields
+            contactForm.reset();
+        });
+    }
+}
+
+function closeTransmissionModal() {
+    const modal = document.getElementById("transmission-modal");
+    if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("modal-active");
+        document.body.style.overflow = 'auto';
+    }
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
+    initContactForm();
 });

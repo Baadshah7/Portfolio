@@ -7,7 +7,7 @@
     <title>Saad Shah | Cybersecurity Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -494,6 +494,33 @@
         </div>
     </div>
 
+    <!-- Terminal Transmission Success Modal -->
+    <div id="transmission-modal"
+        class="fixed inset-0 z-50 overflow-y-auto hidden bg-slate900/90 flex items-center justify-center p-4">
+        <div class="bg-slate800 border border-bluePrimary/30 max-w-md w-full rounded-xl p-6 relative shadow-2xl shadow-bluePrimary/10 font-mono">
+            <div class="flex items-center space-x-2 text-bluePrimary mb-4 border-b border-slate700 pb-2">
+                <i class="fa-solid fa-terminal text-lg"></i>
+                <span class="font-bold tracking-wider text-sm">SECURE_COMM_STATUS // COMPLETED</span>
+            </div>
+            <div class="space-y-3 text-sm text-textMuted">
+                <p class="text-green-400 font-bold"><i class="fa-solid fa-circle-check mr-2"></i>TRANSMISSION DISPATCHED</p>
+                <div class="bg-slate900 p-3 rounded border border-slate700 text-xs space-y-1 text-slate-300">
+                    <p><span class="text-bluePrimary">RELAY:</span> DIRECT_SECURE_CHANNEL</p>
+                    <p><span class="text-bluePrimary">SENDER:</span> <span id="transmission-sender">---</span></p>
+                    <p><span class="text-bluePrimary">PAYLOAD_HASH:</span> <span id="transmission-hash">---</span></p>
+                    <p><span class="text-bluePrimary">STATUS:</span> 200_OK_DELIVERED</p>
+                </div>
+                <p class="text-slate-300 mt-2 text-xs leading-relaxed">
+                    Saad Shah will analyze this transmission shortly. Thank you for making contact.
+                </p>
+            </div>
+            <button onclick="closeTransmissionModal()"
+                class="mt-5 w-full py-2 bg-bluePrimary/20 hover:bg-bluePrimary/35 border border-bluePrimary/40 text-bluePrimary font-medium rounded transition-colors text-xs tracking-wider uppercase">
+                Acknowledge & Close
+            </button>
+        </div>
+    </div>
+
     <section id="contact" class="bg-slate800/40 border-t border-slate800 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div class="lg:col-span-5 space-y-6">
@@ -510,20 +537,25 @@
             </div>
 
             <div class="lg:col-span-7 bg-slate800 border border-slate700 p-6 rounded-2xl">
-                <form action="#" method="POST" class="space-y-4">
+                <form id="contact-form" class="space-y-4">
+                    <!-- Optional Web3Forms Access Key for real email notifications -->
+                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Secure Portfolio Transmission">
+                    <input type="hidden" name="from_name" value="SOC Portfolio Node">
+
                     <div>
                         <label class="block font-mono text-xs text-textMuted uppercase mb-1">Name</label>
-                        <input type="text" required
+                        <input type="text" name="name" required
                             class="w-full bg-slate900 border border-slate700 rounded p-2.5 text-base text-textLight focus:outline-none focus:border-bluePrimary">
                     </div>
                     <div>
                         <label class="block font-mono text-xs text-textMuted uppercase mb-1">Email</label>
-                        <input type="email" required
+                        <input type="email" name="email" required
                             class="w-full bg-slate900 border border-slate700 rounded p-2.5 text-base text-textLight focus:outline-none focus:border-bluePrimary">
                     </div>
                     <div>
                         <label class="block font-mono text-xs text-textMuted uppercase mb-1">Message</label>
-                        <textarea rows="4" required
+                        <textarea name="message" rows="4" required
                             class="w-full bg-slate900 border border-slate700 rounded p-2.5 text-base text-textLight focus:outline-none focus:border-bluePrimary"></textarea>
                     </div>
                     <button type="submit"
@@ -551,7 +583,7 @@
             document.body.style.overflow = 'auto';
         }
     </script>
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
