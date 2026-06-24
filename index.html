@@ -259,12 +259,9 @@
     <hr class="border-slate800 max-w-7xl mx-auto">
 
     <section id="projects" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div>
-                <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">03 // Practical
-                    Evidence</span>
-                <h2 class="text-3xl font-bold mt-1">Featured Security Projects</h2>
-            </div>
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">03 // Practical Evidence</span>
+            <h2 class="text-3xl font-bold mt-1">Featured Security Projects</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -318,7 +315,7 @@
     <hr class="border-slate800 max-w-7xl mx-auto">
 
     <section id="labs" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div>
+        <div class="text-center max-w-3xl mx-auto mb-6">
             <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">04 // Cyber Sandbox</span>
             <h2 class="text-3xl font-bold mt-1">TryHackMe Laboratory Matrix</h2>
         </div>
@@ -378,19 +375,105 @@
     <hr class="border-slate800 max-w-7xl mx-auto">
 
     <section id="certifications" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-12">
+        <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-xs uppercase font-mono tracking-widest text-bluePrimary">05 // Credentials</span>
             <h2 class="text-3xl font-bold mt-1">Certifications Registry</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between">
+            <!-- 1. Advance Prompt Hacking -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-terminal text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-lg text-textLight">Advance Prompt Hacking</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: Learn Prompting</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Jun 2026</p>
+                </div>
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Advance Prompt Hacking')"
+                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 2. HP LIFE - Intro to AI -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-robot text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-lg text-textLight">Intro to Artificial Intelligence</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: HP LIFE</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Sep 2025</p>
+                </div>
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Intro to Artificial Intelligence')"
+                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 3. HP LIFE - Intro to Cybersecurity Awareness -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-shield-halved text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-lg text-textLight">Cybersecurity Awareness</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: HP LIFE</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Sep 2025</p>
+                </div>
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Cybersecurity Awareness')"
+                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 4. Deloitte Cyber Job Simulation -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-building-shield text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-lg text-textLight">Deloitte Cyber Job Simulation</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: Deloitte</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Jul 2025</p>
+                </div>
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Deloitte Cyber Job Simulation')"
+                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 5. Cybersecurity - From Beginner to Expert (Udemy) -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
                 <div class="space-y-2">
                     <i class="fa-solid fa-award text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Generative AI Workshop</h4>
-                    <p class="text-sm font-mono text-textMuted">Issued: Academic Cohort</p>
+                    <h4 class="font-bold text-lg text-textLight">Cybersecurity - Beginner to Expert</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: Udemy</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: May 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Generative AI Workshop')"
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Cybersecurity - Beginner to Expert (Udemy)')"
+                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 6. Gen AI 101 with Pieces -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-brain text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-lg text-textLight">Gen AI 101 with Pieces</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: Pieces</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Feb 2025</p>
+                </div>
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Gen AI 101 with Pieces')"
+                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 7. Cybersecurity - From Beginner to Expert (LinkedIn) -->
+            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-graduation-cap text-bluePrimary text-3xl mb-1"></i>
+                    <h4 class="font-bold text-lg text-textLight">Cybersecurity - Beginner to Expert</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: LinkedIn Learning Community</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Jul 2024</p>
+                </div>
+                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Cybersecurity - Beginner to Expert (LinkedIn)')"
                     class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
