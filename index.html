@@ -558,27 +558,211 @@
             </div>
         </div>
 
-        <div
-            class="bg-slate800 border border-slate700 rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-4 space-y-2">
-                <h3 class="text-xl font-bold font-mono tracking-wide">Platform Tracks</h3>
-                <p class="text-textMuted text-sm">Verified curriculum sync & foundation line logging configuration.
-                    Badges Unlocked: 7</p>
+        <!-- Platform Tracks Container -->
+        <div class="bg-slate800 border border-slate700 rounded-2xl p-6 sm:p-8 space-y-8">
+            <!-- Header & Subtitle -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate700/60 pb-6">
+                <div>
+                    <div class="flex items-center space-x-3">
+                        <h3 class="text-xl sm:text-2xl font-bold font-mono tracking-wide text-textLight">Platform Tracks</h3>
+                        <span class="text-xs font-mono uppercase bg-bluePrimary/10 text-bluePrimary border border-bluePrimary/20 px-2.5 py-0.5 rounded">Badges Unlocked: 7</span>
+                    </div>
+                    <p class="text-xs sm:text-sm font-mono text-bluePrimary mt-1">55+ Labs Completed Across Cybersecurity Domains</p>
+                </div>
+                <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg w-max">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Verified Curriculum Sync</span>
+                </div>
             </div>
 
-            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-slate900 border border-slate700/60 p-4 rounded-xl">
-                    <div class="flex items-center justify-between">
-                        <span class="text-base font-bold text-textLight">Linux Fundamentals</span>
-                        <span class="text-sm text-green-400 font-mono"><i class="fa-solid fa-circle-check mr-1"></i>
-                            100%</span>
+            <!-- Additional Highlight Banner -->
+            <div class="bg-slate900/90 border border-slate700/60 p-4 sm:p-5 rounded-xl flex flex-col md:flex-row md:items-center gap-3.5">
+                <span class="text-xs font-mono font-semibold uppercase bg-bluePrimary/10 text-bluePrimary border border-bluePrimary/20 px-2.5 py-1 rounded flex items-center gap-1.5 shrink-0 w-max">
+                    <i class="fa-solid fa-flask"></i> Practical Exposure
+                </span>
+                <p class="text-textMuted text-xs sm:text-sm font-sans leading-relaxed">
+                    "Hands-on experience across Blue Team, Red Team, SOC, DFIR, Threat Intelligence, and Network Security scenarios through 55+ practical cybersecurity labs and simulations."
+                </p>
+            </div>
+
+            <!-- 8 Categories Matrix Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- 1. Systems & OS Fundamentals -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-server text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Systems & OS Fundamentals</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Built foundational knowledge of operating systems, system architecture, command-line usage, file systems, and administrative concepts.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Linux Fundamentals Part 1</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Windows Fundamentals 1</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Operating Systems: Intro</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="bg-slate900 border border-slate700/60 p-4 rounded-xl">
-                    <div class="flex items-center justify-between">
-                        <span class="text-base font-bold text-textLight">Network Fundamentals</span>
-                        <span class="text-sm text-green-400 font-mono"><i class="fa-solid fa-circle-check mr-1"></i>
-                            100%</span>
+
+                <!-- 2. Networking & Protocols -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-network-wired text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Networking & Protocols</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Developed practical understanding of networking models, protocols, web communication, and network traffic analysis.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Networking Concepts</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> DNS in Detail</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> HTTP in Detail</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Traffic Analysis Essentials</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. Security Foundations -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-shield-halved text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Security Foundations</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Studied fundamental cybersecurity concepts, security models, encryption techniques, and core security principles.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Security Principles</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Cryptography Basics</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> The CIA Triad</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4. Blue Team, SOC & Detection -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-user-shield text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Blue Team, SOC & Detection</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Learned security monitoring, threat detection, security operations workflows, endpoint visibility, and SOC fundamentals.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Defensive Security Intro</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Introduction to SIEM</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Intro to Detection Eng.</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Intro to Endpoint Security</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. Threat Intelligence & Analysis -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-diagram-project text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Threat Intel & Analysis</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Explored adversary behavior, attack lifecycle frameworks, threat intelligence concepts, and defensive analysis methodologies.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Pyramid of Pain</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Cyber Kill Chain</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Unified Kill Chain</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. Offensive Security & Pentesting -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-crosshairs text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Offensive Security & Pentesting</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Practiced reconnaissance, enumeration, vulnerability discovery, and penetration testing methodologies in controlled environments.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Pentesting Fundamentals</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Passive Reconnaissance</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Enumeration & Brute Force</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Network Services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. Digital Forensics & DFIR -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Digital Forensics & DFIR</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Gained exposure to digital investigations, log analysis, evidence collection concepts, and forensic methodologies.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> DFIR: An Introduction</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Windows Forensics 1</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Intro to Logs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 8. Tools & Practical Exposure -->
+                <div class="bg-slate900 border border-slate700/60 p-5 rounded-xl hover:border-bluePrimary/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 rounded bg-bluePrimary/10 flex items-center justify-center text-bluePrimary shrink-0 group-hover:bg-bluePrimary/20 transition-colors">
+                                <i class="fa-solid fa-screwdriver-wrench text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-base text-textLight">Tools & Practical Exposure</h4>
+                        </div>
+                        <p class="text-xs text-textMuted leading-relaxed mb-4">
+                            Worked with industry-relevant security monitoring, detection, and log analysis platforms used in modern security operations.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate700/50">
+                        <ul class="space-y-1.5 text-xs text-textMuted font-mono">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Wazuh</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Snort</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-[10px] text-emerald-400 mr-2 shrink-0"></i> Microsoft Sentinel</li>
+                        </ul>
                     </div>
                 </div>
             </div>
