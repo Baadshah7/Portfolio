@@ -1,9 +1,9 @@
 // ⚡ TYPING ANIMATION FOR SOC ROLES
 const roles = [
-    "Network Security",
-    "Ethical Hacking",
-    "Digital Forensics",
-    "Incident Response"
+    "Digital Forensics Enthusiast",
+    "Network Security Specialist",
+    "Threat Operations Analyst",
+    "Incident Response Practitioner"
 ];
 let currentRoleIndex = 0;
 let currentCharIndex = 0;
@@ -14,6 +14,7 @@ const eraseSpeed = 50;
 const delayBetweenRoles = 2000;
 
 function typeAnimation() {
+    if (!typingElement) return;
     const currentRole = roles[currentRoleIndex];
 
     if (isDeleting) {
