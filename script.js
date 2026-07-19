@@ -119,8 +119,43 @@ function closeTransmissionModal() {
     }
 }
 
+// 🗺️ ACTIVE NAVIGATION LINK HIGHLIGHTER
+function initActiveNav() {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a[href^='#']");
+
+    function highlightNav() {
+        let scrollPosition = window.scrollY + 120; // offset for nav bar height
+
+        let currentSectionId = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute("href");
+            if (href === `#${currentSectionId}`) {
+                link.classList.remove("text-textMuted");
+                link.classList.add("text-textLight", "text-bluePrimary");
+            } else {
+                link.classList.remove("text-textLight", "text-bluePrimary");
+                link.classList.add("text-textMuted");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", highlightNav);
+    highlightNav(); // initial call
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
     initContactForm();
+    initActiveNav();
 });
