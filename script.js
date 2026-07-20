@@ -140,11 +140,11 @@ function initActiveNav() {
         navLinks.forEach(link => {
             const href = link.getAttribute("href");
             if (href === `#${currentSectionId}`) {
-                link.classList.remove("text-textMuted");
-                link.classList.add("text-textLight", "text-bluePrimary");
+                link.classList.remove("text-textMuted", "border-transparent");
+                link.classList.add("text-bluePrimary", "bg-bluePrimary/10", "border-bluePrimary/20");
             } else {
-                link.classList.remove("text-textLight", "text-bluePrimary");
-                link.classList.add("text-textMuted");
+                link.classList.remove("text-bluePrimary", "bg-bluePrimary/10", "border-bluePrimary/20");
+                link.classList.add("text-textMuted", "border-transparent");
             }
         });
     }
@@ -153,9 +153,23 @@ function initActiveNav() {
     highlightNav(); // initial call
 }
 
+// 📈 SCROLL PROGRESS INDICATOR
+function initScrollProgress() {
+    const progress = document.getElementById("scroll-progress");
+    if (!progress) return;
+
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progress.style.width = scrollPercent + "%";
+    });
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
     initContactForm();
     initActiveNav();
+    initScrollProgress();
 });
