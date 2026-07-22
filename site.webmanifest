@@ -1,0 +1,14 @@
+{
+  "name": "Saad Shah | Cybersecurity Portfolio",
+  "short_name": "Saad Shah",
+  "icons": [
+    {
+      "src": "/Portfolio/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#0F172A",
+  "background_color": "#0F172A",
+  "display": "standalone"
+}

@@ -166,10 +166,43 @@ function initScrollProgress() {
     });
 }
 
+// 🚀 BACK TO TOP BUTTON
+function initBackToTop() {
+    const backToTopBtn = document.getElementById("back-to-top");
+    if (!backToTopBtn) return;
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
+            backToTopBtn.classList.add("opacity-100", "translate-y-0", "cursor-pointer");
+        } else {
+            backToTopBtn.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
+            backToTopBtn.classList.remove("opacity-100", "translate-y-0", "cursor-pointer");
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
+
+// 📅 DYNAMIC COPYRIGHT YEAR
+function initDynamicYear() {
+    const yearSpan = document.getElementById("current-year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
     initContactForm();
     initActiveNav();
     initScrollProgress();
+    initBackToTop();
+    initDynamicYear();
 });
