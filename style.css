@@ -68,3 +68,89 @@
         border-right: none !important;
     }
 }
+
+/* ==================================================
+   PREMIUM CUSTOM CURSOR
+   ================================================== */
+body.cursor-enabled {
+    cursor: none;
+}
+body.cursor-enabled a,
+body.cursor-enabled button,
+body.cursor-enabled input,
+body.cursor-enabled textarea,
+body.cursor-enabled select,
+body.cursor-enabled summary,
+body.cursor-enabled [role="button"],
+body.cursor-enabled .hover-lift {
+    cursor: none !important;
+}
+
+#cursor-dot, #cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+    /* initial transform offscreen */
+    transform: translate3d(-100px, -100px, 0);
+    will-change: transform;
+}
+
+@media (pointer: fine) and (hover: hover) {
+    #cursor-dot, #cursor-ring {
+        display: block;
+    }
+}
+
+#cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #3B82F6;
+    border-radius: 50%;
+    margin-left: -3px;
+    margin-top: -3px;
+    mix-blend-mode: difference;
+}
+
+#cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    margin-left: -16px;
+    margin-top: -16px;
+    transition: width 0.15s ease-out, height 0.15s ease-out, margin 0.15s ease-out, background-color 0.15s ease-out, border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+#cursor-ring.cursor-hover {
+    width: 58px;
+    height: 58px;
+    margin-left: -29px;
+    margin-top: -29px;
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+#cursor-ring.cursor-glow {
+    width: 58px;
+    height: 58px;
+    margin-left: -29px;
+    margin-top: -29px;
+    background-color: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #cursor-dot, #cursor-ring {
+        display: none !important;
+    }
+    body.cursor-enabled {
+        cursor: auto !important;
+    }
+    body.cursor-enabled a, body.cursor-enabled button {
+        cursor: pointer !important;
+    }
+}
