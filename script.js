@@ -574,53 +574,83 @@ function initCertificateViewer() {
     });
 }
 
-// 📊 RESILIENT PROFILE VISIT COUNTER ENGINE
-function initProfileVisitCounter() {
-    const visitElements = document.querySelectorAll(".visit-counter-value");
-    if (!visitElements.length) return;
+// 📊 REAL-TIME LIVE VISITOR COUNTER ENGINE
+async function initLiveVisitorCounter() {
+    const counterElements = document.querySelectorAll(".visit-counter-value, #visitor-count");
+    if (!counterElements.length) return;
 
-    const STORAGE_KEY = "saad_portfolio_visit_count";
-    const SESSION_KEY = "saad_portfolio_session_active";
-    const BASE_COUNT = 1248; // Base realistic initial visit count
+    const STORAGE_KEY = "saad_shah_portfolio_last_visit_count";
+    const API_ENDPOINT = "https://api.counterapi.dev/v1/baadshah7_portfolio_live/visits/up";
+    const BASE_OFFSET = 1248; // Base scale baseline
 
-    let storedOffset = parseInt(localStorage.getItem(STORAGE_KEY) || "0", 10);
-    if (isNaN(storedOffset)) storedOffset = 0;
-
-    // Increment count on new session
-    if (!sessionStorage.getItem(SESSION_KEY)) {
-        storedOffset += 1;
-        localStorage.setItem(STORAGE_KEY, storedOffset.toString());
-        sessionStorage.setItem(SESSION_KEY, "true");
+    // 1. Load cached count or default baseline
+    let storedCount = parseInt(localStorage.getItem(STORAGE_KEY) || "0", 10);
+    if (isNaN(storedCount) || storedCount < BASE_OFFSET) {
+        storedCount = BASE_OFFSET;
     }
 
-    let displayCount = BASE_COUNT + storedOffset;
+    // Always increment locally on every page visit/refresh for instant live response
+    let currentDisplayCount = storedCount + 1;
+    localStorage.setItem(STORAGE_KEY, currentDisplayCount.toString());
 
-    function renderCount(num) {
-        const formatted = num.toLocaleString('en-US');
-        visitElements.forEach(el => {
+    // Immediately render current local incremented count
+    renderAll(currentDisplayCount);
+
+    // 2. Asynchronously hit global server counter endpoint to register hit & fetch global total
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000); // 4-second timeout
+
+        const response = await fetch(API_ENDPOINT, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data && typeof data.count === "number" && data.count > 0) {
+                // Calculate synchronized global count
+                const serverGlobalCount = BASE_OFFSET + data.count;
+                const finalCount = Math.max(serverGlobalCount, currentDisplayCount);
+
+                if (finalCount > currentDisplayCount) {
+                    const prevCount = currentDisplayCount;
+                    currentDisplayCount = finalCount;
+                    localStorage.setItem(STORAGE_KEY, currentDisplayCount.toString());
+                    animateValueAll(counterElements, prevCount, currentDisplayCount, 800);
+                }
+            }
+        }
+    } catch (err) {
+        // Silently fallback to local display count - 100% resilient
+    }
+
+    function renderAll(val) {
+        const formatted = val.toLocaleString("en-US");
+        counterElements.forEach(el => {
             el.textContent = formatted;
         });
     }
 
-    // Immediately display reliable local count (Never shows "-" or blank)
-    renderCount(displayCount);
+    function animateValueAll(elements, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 4); // smooth easeOutQuart
+            const currentVal = Math.floor(easeProgress * (end - start) + start);
+            const formatted = currentVal.toLocaleString("en-US");
 
-    // Synchronize asynchronously with public counter endpoint if network is available
-    fetch("https://api.counterapi.dev/v1/saadshah_cybersecurity_portfolio/visits/up")
-        .then(res => {
-            if (!res.ok) throw new Error("Network response not ok");
-            return res.json();
-        })
-        .then(data => {
-            if (data && typeof data.count === 'number' && data.count > 0) {
-                const synchronizedCount = Math.max(data.count, displayCount);
-                renderCount(synchronizedCount);
-                localStorage.setItem(STORAGE_KEY, Math.max(0, synchronizedCount - BASE_COUNT).toString());
+            elements.forEach(el => {
+                el.textContent = formatted;
+            });
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                renderAll(end);
             }
-        })
-        .catch(err => {
-            // Silently fallback to local display count - 100% resilient
-        });
+        };
+        window.requestAnimationFrame(step);
+    }
 }
 
 // 🚀 BACK TO TOP BUTTON
@@ -662,145 +692,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileDrawer();
     initScrollProgress();
     initCertificateViewer();
-    initProfileVisitCounter();
+    initLiveVisitorCounter();
     initBackToTop();
     initDynamicYear();
     initPremiumCursor();
-    initVisitorCounter();
 });
-// 🎯 PREMIUM CUSTOM CURSOR
-function initPremiumCursor() {
-    // Disable on mobile/touch screens
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-    
-    // Accessibility: Disable if user prefers reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    if (!dot || !ring) return;
-
-    document.body.classList.add('cursor-enabled');
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-    let isMoving = false;
-
-    // Throttle via requestAnimationFrame
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        if (!isMoving) {
-            isMoving = true;
-            requestAnimationFrame(renderCursor);
-        }
-    });
-
-    const LERP_FACTOR = 0.18;
-
-    function renderCursor() {
-        if (document.hidden) {
-            isMoving = false;
-            return;
-        }
-
-        // Dot follows instantly
-        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-
-        // Ring follows with Lerp
-        ringX += (mouseX - ringX) * LERP_FACTOR;
-        ringY += (mouseY - ringY) * LERP_FACTOR;
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-
-        // Continue loop if ring is still catching up (threshold 0.1px)
-        if (Math.abs(mouseX - ringX) > 0.1 || Math.abs(mouseY - ringY) > 0.1) {
-            requestAnimationFrame(renderCursor);
-        } else {
-            isMoving = false;
-        }
-    }
-
-    // Interactive Hover Effects
-    const interactives = document.querySelectorAll('a, button, input, textarea, select, summary, [role="button"], [data-cursor], .hover-lift');
-    
-    interactives.forEach(el => {
-        el.addEventListener('pointerenter', () => {
-            ring.classList.add('cursor-hover');
-            // Check if it's a special card/button to add pulse glow
-            if (el.classList.contains('hover-lift') || el.classList.contains('bg-slate-900')) {
-                ring.classList.add('cursor-glow');
-            }
-        });
-        
-        el.addEventListener('pointerleave', () => {
-            ring.classList.remove('cursor-hover');
-            ring.classList.remove('cursor-glow');
-        });
-    });
-
-    // Handle visibility pause/resume
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && !isMoving) {
-            isMoving = true;
-            requestAnimationFrame(renderCursor);
-        }
-    });
-}
-
-// 👁️ VISITOR COUNTER ANIMATION & FETCH
-async function initVisitorCounter() {
-    const counterEl = document.getElementById('visitor-count');
-    if (!counterEl) return;
-
-    // PLACEHOLDER: The user needs to replace YOUR_GOATCOUNTER_CODE with their actual site code!
-    const GOATCOUNTER_CODE = 'YOUR_GOATCOUNTER_CODE'; 
-    const url = `https://${GOATCOUNTER_CODE}.goatcounter.com/counter//Portfolio/.json`;
-
-    try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout
-
-        const response = await fetch(url, { signal: controller.signal });
-        clearTimeout(timeoutId);
-
-        if (!response.ok) throw new Error("GoatCounter API failed");
-        
-        const data = await response.json();
-        let totalVisits = 0;
-        
-        // GoatCounter returns numbers with spaces for thousands (e.g. "1 274")
-        if (data && data.count) {
-             totalVisits = parseInt(data.count.replace(/\D/g, '')) || 0;
-        }
-
-        // Animate counting
-        animateValue(counterEl, 0, totalVisits, 700);
-
-    } catch (error) {
-        console.warn("Visitor counter fetch failed or timed out:", error);
-        counterEl.textContent = '—';
-    }
-}
-
-function animateValue(obj, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        
-        // Easing function (easeOutQuart) for premium slowing down effect
-        const easeProgress = 1 - Math.pow(1 - progress, 4);
-        
-        const currentVal = Math.floor(easeProgress * (end - start) + start);
-        obj.innerHTML = currentVal.toLocaleString();
-        
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        } else {
-            obj.innerHTML = end.toLocaleString();
-        }
-    };
-    window.requestAnimationFrame(step);
-}
