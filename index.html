@@ -44,7 +44,7 @@
                     </div>
                 </a>
 
-                <div class="hidden md:flex space-x-3 lg:space-x-4 text-sm font-medium">
+                <div class="hidden lg:flex space-x-3 lg:space-x-4 text-sm font-medium">
                     <a href="#home" class="px-3.5 py-1.5 rounded-full border border-transparent transition-all duration-300 text-textMuted hover:text-bluePrimary">Home</a>
                     <a href="#about" class="px-3.5 py-1.5 rounded-full border border-transparent transition-all duration-300 text-textMuted hover:text-bluePrimary">About</a>
                     <a href="#academic" class="px-3.5 py-1.5 rounded-full border border-transparent transition-all duration-300 text-textMuted hover:text-bluePrimary">Education</a>
@@ -54,21 +54,127 @@
                     <a href="#certifications" class="px-3.5 py-1.5 rounded-full border border-transparent transition-all duration-300 text-textMuted hover:text-bluePrimary">Certifications</a>
                     <a href="#contact" class="px-3.5 py-1.5 rounded-full border border-transparent transition-all duration-300 text-textMuted hover:text-bluePrimary">Contact</a>
                 </div>
+
+                <!-- Mobile Hamburger Toggle Button -->
+                <button id="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation menu"
+                    class="lg:hidden p-2.5 rounded-lg text-textMuted hover:text-white hover:bg-slate800/80 focus:outline-none focus:ring-2 focus:ring-bluePrimary transition-all duration-200 flex items-center justify-center">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Navigation Backdrop Overlay -->
+    <div id="mobile-drawer-overlay"
+        class="fixed inset-0 bg-slate900/80 backdrop-blur-sm z-[90] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+    </div>
+
+    <!-- Mobile Navigation Drawer Panel -->
+    <aside id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Drawer"
+        class="fixed top-0 right-0 bottom-0 w-[320px] max-w-[85vw] bg-slate900/95 backdrop-blur-xl border-l border-slate800/90 shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between p-6 overflow-y-auto">
+        <div>
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-6 border-b border-slate800">
+                <div class="flex items-center space-x-2.5">
+                    <i class="fa-solid fa-shield-halved text-bluePrimary text-lg"></i>
+                    <span class="font-mono text-xs font-bold tracking-wider text-textLight">PORTFOLIO_NAV</span>
+                </div>
+                <button id="mobile-drawer-close" type="button" aria-label="Close navigation menu"
+                    class="p-2 rounded-lg text-textMuted hover:text-white hover:bg-slate800 focus:outline-none focus:ring-2 focus:ring-bluePrimary transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Drawer Links -->
+            <nav class="mt-6 space-y-1.5 font-medium text-sm">
+                <a href="#home" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-house w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#about" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-user w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>About</span>
+                </a>
+                <a href="#academic" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-graduation-cap w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Education</span>
+                </a>
+                <a href="#skills" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-gears w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Skills</span>
+                </a>
+                <a href="#projects" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-laptop-code w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Projects</span>
+                </a>
+                <a href="#experience" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-briefcase w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Experience</span>
+                </a>
+                <a href="#certifications" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-award w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Certifications</span>
+                </a>
+                <a href="#contact" class="flex items-center space-x-3 px-4 py-3 rounded-xl border border-transparent text-textMuted hover:text-bluePrimary hover:bg-bluePrimary/10 transition-all duration-200">
+                    <i class="fa-solid fa-envelope w-5 text-center text-xs text-bluePrimary"></i>
+                    <span>Contact</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Drawer Footer with High-Value Quick Actions -->
+        <div class="pt-6 border-t border-slate800 space-y-3">
+            <div class="grid grid-cols-2 gap-2">
+                <a href="assets/resume/Shah_Saad_Resume.pdf" download="Shah_Saad_Resume.pdf"
+                    class="py-2.5 px-3 bg-bluePrimary hover:bg-blue-600 text-white font-medium rounded-lg shadow-md shadow-bluePrimary/20 text-xs flex items-center justify-center gap-1.5 transition-all duration-200">
+                    <i class="fa-solid fa-file-pdf text-xs"></i> <span>Resume</span>
+                </a>
+                <a href="https://github.com/Baadshah7" target="_blank"
+                    class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-textLight border border-slate700 font-medium rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all duration-200">
+                    <i class="fa-brands fa-github text-xs"></i> <span>GitHub</span>
+                </a>
+                <a href="https://linkedin.com" target="_blank"
+                    class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-textLight border border-slate700 font-medium rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all duration-200">
+                    <i class="fa-brands fa-linkedin text-xs text-bluePrimary"></i> <span>LinkedIn</span>
+                </a>
+                <a href="mailto:shahsaadcyber@gmail.com"
+                    class="py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-textLight border border-slate700 font-medium rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all duration-200">
+                    <i class="fa-solid fa-envelope text-xs text-bluePrimary"></i> <span>Email</span>
+                </a>
+            </div>
+            <div class="flex items-center justify-between text-[11px] font-mono text-textMuted pt-1">
+                <span>SYSTEM_STATUS</span>
+                <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ONLINE
+                </span>
+            </div>
+            <div class="flex items-center justify-between text-[11px] font-mono text-textMuted pt-1 border-t border-slate800/80 mt-1">
+                <span>PROFILE_VISITS</span>
+                <span class="text-bluePrimary font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-eye text-[10px]"></i> <span class="visit-counter-value">...</span>
+                </span>
+            </div>
+        </div>
+    </aside>
+
     <section id="home"
         class="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 pt-8 pb-16">
         <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
-            <div
-                class="inline-flex items-center space-x-2.5 bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 rounded-full text-sm text-emerald-400 font-mono w-max tracking-wide">
-                <span class="flex h-2.5 w-2.5 relative">
-                    <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
-                <span>Open to Internship Opportunities</span>
+            <div class="flex flex-wrap items-center gap-3">
+                <div
+                    class="inline-flex items-center space-x-2.5 bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 rounded-full text-sm text-emerald-400 font-mono w-max tracking-wide">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span>Open to Internship Opportunities</span>
+                </div>
+                <div
+                    class="inline-flex items-center space-x-2 bg-bluePrimary/10 border border-bluePrimary/20 px-3.5 py-1.5 rounded-full text-sm text-bluePrimary font-mono w-max tracking-wide shadow-sm">
+                    <i class="fa-solid fa-eye text-xs text-bluePrimary"></i>
+                    <span class="text-xs text-textMuted">Profile Visits: <strong class="visit-counter-value text-textLight font-bold font-mono">...</strong></span>
+                </div>
             </div>
 
             <div>
@@ -479,7 +585,11 @@
                     <div class="space-y-4">
                         <div>
                             <span class="text-[10px] font-mono font-bold uppercase bg-bluePrimary/10 border border-bluePrimary/20 px-2.5 py-0.5 rounded text-bluePrimary">Academic Project</span>
-                            <h3 class="text-2xl font-bold text-textLight group-hover:text-bluePrimary transition-colors duration-300 mt-2">Child Monitoring System</h3>
+                            <a href="https://github.com/Baadshah7/MonitorChildApp" target="_blank" class="block group/title">
+                                <h3 class="text-2xl font-bold text-textLight group-hover/title:text-bluePrimary transition-colors duration-300 mt-2 flex items-center gap-2">
+                                    Child Monitoring System <i class="fa-solid fa-arrow-up-right-from-square text-xs text-bluePrimary opacity-75 group-hover/title:opacity-100 transition-opacity"></i>
+                                </h3>
+                            </a>
                             <p class="text-xs text-textMuted font-mono mt-1">An IoT-enabled safety tracking app with real-time GPS sync, geofencing, and SOS alerting.</p>
                         </div>
 
@@ -530,14 +640,14 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <a href="https://github.com/Baadshah7" target="_blank"
+                            <a href="https://github.com/Baadshah7/MonitorChildApp" target="_blank"
                                 class="flex-1 py-2.5 bg-slate-900 hover:bg-slate-950 border border-slate700 hover:border-slate600 text-textLight text-xs font-mono font-bold rounded flex items-center justify-center gap-2 transition-all duration-300">
                                 <i class="fa-brands fa-github text-sm"></i> GitHub Repository
                             </a>
-                            <button disabled
-                                class="flex-1 py-2.5 bg-slate-800/40 border border-slate700/30 text-textMuted text-xs font-mono font-bold rounded flex items-center justify-center gap-2 cursor-not-allowed">
-                                <i class="fa-solid fa-file-invoice text-[10px]"></i> Docs (N/A)
-                            </button>
+                            <a href="https://github.com/Baadshah7/MonitorChildApp#readme" target="_blank"
+                                class="flex-1 py-2.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded flex items-center justify-center gap-2 transition-all duration-300">
+                                <i class="fa-solid fa-file-invoice text-xs"></i> Project Docs
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -880,128 +990,250 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- 1. Advance Prompt Hacking -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <div onclick="openCertificateViewer('cert-01', event)" tabindex="0" role="button" aria-label="View Advance Prompt Hacking certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-terminal text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Advance Prompt Hacking</h4>
+                    <i class="fa-solid fa-terminal text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Advance Prompt Hacking</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: Learn Prompting</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Jun 2026</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Advance Prompt Hacking')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-01', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
             <!-- 2. HP LIFE - Intro to AI -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <div onclick="openCertificateViewer('cert-02', event)" tabindex="0" role="button" aria-label="View Intro to Artificial Intelligence certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-robot text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Intro to Artificial Intelligence</h4>
+                    <i class="fa-solid fa-robot text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Intro to Artificial Intelligence</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: HP LIFE</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Sep 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Intro to Artificial Intelligence')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-02', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
             <!-- 3. HP LIFE - Intro to Cybersecurity Awareness -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <div onclick="openCertificateViewer('cert-03', event)" tabindex="0" role="button" aria-label="View Cybersecurity Awareness certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-shield-halved text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Cybersecurity Awareness</h4>
+                    <i class="fa-solid fa-shield-halved text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Cybersecurity Awareness</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: HP LIFE</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Sep 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Cybersecurity Awareness')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-03', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
             <!-- 4. Deloitte Cyber Job Simulation -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <div onclick="openCertificateViewer('cert-04', event)" tabindex="0" role="button" aria-label="View Deloitte Cyber Job Simulation certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-building-shield text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Deloitte Cyber Job Simulation</h4>
+                    <i class="fa-solid fa-building-shield text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Deloitte Cyber Job Simulation</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: Deloitte</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Jul 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Deloitte Cyber Job Simulation')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-04', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
             <!-- 5. Tata - Cybersecurity Analyst Job Simulation -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <div onclick="openCertificateViewer('cert-05', event)" tabindex="0" role="button" aria-label="View Tata Cybersecurity Analyst Job Simulation certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-laptop-code text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Tata Cybersecurity Analyst Job Simulation</h4>
+                    <i class="fa-solid fa-laptop-code text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Tata Cybersecurity Analyst Job Simulation</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: Tata (Forage)</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Sep 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Tata Cybersecurity Analyst Job Simulation')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-05', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
-            <!-- 5. Cybersecurity - From Beginner to Expert (Udemy) -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <!-- 6. Cybersecurity - From Beginner to Expert (Udemy) -->
+            <div onclick="openCertificateViewer('cert-06', event)" tabindex="0" role="button" aria-label="View Cybersecurity Beginner to Expert Udemy certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-award text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Cybersecurity - Beginner to Expert</h4>
+                    <i class="fa-solid fa-award text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Cybersecurity - Beginner to Expert</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: Udemy</p>
                     <p class="text-xs font-mono text-slate-500">Issued: May 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Cybersecurity - Beginner to Expert (Udemy)')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-06', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
-            <!-- 6. Gen AI 101 with Pieces -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <!-- 7. Gen AI 101 with Pieces -->
+            <div onclick="openCertificateViewer('cert-07', event)" tabindex="0" role="button" aria-label="View Gen AI 101 with Pieces certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-brain text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Gen AI 101 with Pieces</h4>
+                    <i class="fa-solid fa-brain text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Gen AI 101 with Pieces</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: Pieces</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Feb 2025</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Gen AI 101 with Pieces')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-07', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
 
-            <!-- 7. Cybersecurity - From Beginner to Expert (LinkedIn) -->
-            <div class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift">
+            <!-- 8. Cybersecurity - From Beginner to Expert (LinkedIn) -->
+            <div onclick="openCertificateViewer('cert-08', event)" tabindex="0" role="button" aria-label="View Cybersecurity Beginner to Expert LinkedIn certificate"
+                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
-                    <i class="fa-solid fa-graduation-cap text-bluePrimary text-3xl mb-1"></i>
-                    <h4 class="font-bold text-lg text-textLight">Cybersecurity - Beginner to Expert</h4>
+                    <i class="fa-solid fa-graduation-cap text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Cybersecurity - Beginner to Expert</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: LinkedIn Learning Community</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Jul 2024</p>
                 </div>
-                <button onclick="openCertificate('images/cert_placeholder.jpg', 'Cybersecurity - Beginner to Expert (LinkedIn)')"
-                    class="mt-4 text-sm font-medium text-bluePrimary hover:underline flex items-center focus:outline-none">
+                <button onclick="openCertificateViewer('cert-08', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <div id="cert-viewer-modal"
-        class="fixed inset-0 z-50 overflow-y-auto hidden bg-slate900/90 flex items-center justify-center p-4">
-        <div class="bg-slate800 border border-slate700 max-w-2xl w-full rounded-xl p-6 relative shadow-2xl">
-            <button onclick="closeCertificate()"
-                class="absolute top-4 right-4 text-textMuted hover:text-white text-xl font-mono focus:outline-none">&times;
-                CLOSE</button>
-            <h3 id="modal-title" class="text-lg font-mono font-bold text-bluePrimary mb-4">CREDENTIAL_LOG</h3>
-            <div class="flex justify-center bg-slate900 rounded border border-slate700 p-2">
-                <img id="modal-img" src="" alt="Certificate Image View" class="max-w-full h-auto rounded">
+    <!-- Professional Certificate Gallery Viewer Modal -->
+    <div id="cert-viewer-modal" role="dialog" aria-modal="true" aria-label="Certificate Viewer"
+        class="fixed inset-0 z-50 overflow-y-auto hidden bg-slate900/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+        <div class="bg-slate800 border border-slate700/80 max-w-4xl w-full rounded-2xl relative shadow-2xl overflow-hidden flex flex-col max-h-[90vh] my-auto">
+            
+            <!-- Modal Header -->
+            <div class="bg-slate900/90 border-b border-slate700/80 px-5 py-4 flex items-center justify-between shrink-0">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded bg-bluePrimary/10 border border-bluePrimary/20 flex items-center justify-center text-bluePrimary">
+                        <i class="fa-solid fa-award text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-bluePrimary font-bold tracking-wider block">VERIFIED_CREDENTIAL // LOG_ENTRY</span>
+                        <h3 id="modal-title" class="hidden">Certificate Viewer</h3>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <!-- Gallery Index Badge -->
+                    <span id="cert-modal-counter" class="font-mono text-xs font-bold text-textMuted bg-slate800 border border-slate700 px-3 py-1 rounded-lg">1 / 8</span>
+                    
+                    <!-- Close Button -->
+                    <button id="cert-modal-close" onclick="closeCertificateViewer()" aria-label="Close certificate viewer"
+                        class="p-2 rounded-lg text-textMuted hover:text-white hover:bg-slate800 focus:outline-none focus:ring-2 focus:ring-bluePrimary transition-colors">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
+                
+                <!-- Left Column: Certificate Image Box & Zoom Controls -->
+                <div class="lg:col-span-8 bg-slate950/80 p-6 flex flex-col items-center justify-between relative min-h-[320px] sm:min-h-[400px] border-b lg:border-b-0 lg:border-r border-slate700/60 overflow-hidden group">
+                    
+                    <!-- Floating Prev / Next Navigation Controls -->
+                    <button onclick="navigateCertificate(-1)" aria-label="Previous Certificate"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-slate900/80 hover:bg-bluePrimary text-textMuted hover:text-white border border-slate700 flex items-center justify-center transition-all duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <button onclick="navigateCertificate(1)" aria-label="Next Certificate"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-slate900/80 hover:bg-bluePrimary text-textMuted hover:text-white border border-slate700 flex items-center justify-center transition-all duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+
+                    <!-- Image Display Viewport -->
+                    <div class="w-full h-full flex items-center justify-center overflow-auto p-2 cursor-grab active:cursor-grabbing">
+                        <img id="cert-modal-img" src="images/cert_placeholder.jpg" alt="Certificate Preview"
+                            class="max-w-full max-h-[55vh] object-contain rounded-lg border border-slate700/60 shadow-xl transition-transform duration-200 ease-out origin-center">
+                    </div>
+
+                    <!-- Floating Zoom Controls Bar -->
+                    <div class="mt-4 bg-slate900/90 border border-slate700 px-3 py-1.5 rounded-full flex items-center space-x-3 text-xs font-mono text-textMuted shadow-md z-10">
+                        <button onclick="zoomCertificate(-0.25)" title="Zoom Out" aria-label="Zoom Out" class="p-1 hover:text-bluePrimary transition-colors focus:outline-none">
+                            <i class="fa-solid fa-magnifying-glass-minus text-sm"></i>
+                        </button>
+                        <span id="cert-zoom-level" class="font-bold text-slate-300 w-12 text-center">100%</span>
+                        <button onclick="zoomCertificate(0.25)" title="Zoom In" aria-label="Zoom In" class="p-1 hover:text-bluePrimary transition-colors focus:outline-none">
+                            <i class="fa-solid fa-magnifying-glass-plus text-sm"></i>
+                        </button>
+                        <span class="text-slate-700">|</span>
+                        <button onclick="zoomCertificate(0)" title="Reset Zoom" aria-label="Reset Zoom" class="px-2 py-0.5 rounded bg-slate800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors focus:outline-none text-[10px]">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Metadata & Verification Details -->
+                <div class="lg:col-span-4 p-6 bg-slate800 flex flex-col justify-between space-y-6">
+                    <div class="space-y-5">
+                        <!-- Certificate Title -->
+                        <div>
+                            <span class="text-[10px] font-mono font-bold uppercase bg-bluePrimary/10 border border-bluePrimary/20 px-2.5 py-0.5 rounded text-bluePrimary">
+                                Certified Qualification
+                            </span>
+                            <h4 id="cert-modal-title" class="text-xl font-bold text-textLight mt-2 leading-snug">
+                                Certificate Title
+                            </h4>
+                        </div>
+
+                        <hr class="border-slate700/60">
+
+                        <!-- Meta Info List -->
+                        <div class="space-y-3 font-sans text-xs">
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-[10px] font-mono text-textMuted uppercase">Issuing Organization</span>
+                                <span id="cert-modal-issuer" class="font-semibold text-slate-200 text-sm">Issuer Name</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-[10px] font-mono text-textMuted uppercase">Issue Date</span>
+                                <span id="cert-modal-date" class="font-mono text-slate-300">Date</span>
+                            </div>
+                            <div class="flex flex-col space-y-1">
+                                <span class="text-[10px] font-mono text-textMuted uppercase">Credential Verification ID</span>
+                                <div class="bg-slate900 border border-slate700 p-2.5 rounded-lg flex items-center justify-between font-mono text-xs text-bluePrimary">
+                                    <span id="cert-modal-cred-id" class="truncate mr-2">CRED-ID</span>
+                                    <i class="fa-solid fa-shield-check text-emerald-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-2.5 pt-4 border-t border-slate700/60">
+                        <a id="cert-modal-verify" href="#" target="_blank"
+                            class="w-full py-2.5 bg-bluePrimary hover:bg-blue-600 text-white font-medium rounded-lg shadow-lg shadow-bluePrimary/20 text-xs flex items-center justify-center gap-2 transition-all duration-200">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Verify Credential
+                        </a>
+                        <a id="cert-modal-download" href="#" download
+                            class="w-full py-2.5 bg-slate900 hover:bg-slate-950 text-textLight border border-slate700 hover:border-slate600 font-medium rounded-lg text-xs flex items-center justify-center gap-2 transition-all duration-200">
+                            <i class="fa-solid fa-download text-xs"></i> Download Certificate
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Keyboard Tip -->
+            <div class="bg-slate900/90 border-t border-slate700/80 px-5 py-2 flex items-center justify-between text-[11px] font-mono text-textMuted">
+                <span class="hidden sm:inline"><i class="fa-solid fa-keyboard mr-1.5 text-bluePrimary"></i> Use <kbd class="px-1.5 py-0.5 bg-slate800 border border-slate700 rounded text-slate-300">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate800 border border-slate700 rounded text-slate-300">→</kbd> to navigate, <kbd class="px-1.5 py-0.5 bg-slate800 border border-slate700 rounded text-slate-300">ESC</kbd> to close</span>
+                <span class="text-bluePrimary font-bold ml-auto">SECURITY_AUDIT // VERIFIED</span>
             </div>
         </div>
     </div>
@@ -1136,7 +1368,7 @@
     </section>
 
     <footer class="bg-slate900 py-8 border-t border-slate800/80 text-center text-xs font-mono text-textMuted space-y-2">
-        <p>&copy; 2026 Saad Shah. All Rights Reserved.</p>
+        <p>&copy; 2026 Saad Shah. All Rights Reserved. &bull; <i class="fa-solid fa-eye text-bluePrimary"></i> Profile Visits: <span class="visit-counter-value font-bold text-bluePrimary">...</span></p>
         <p class="text-[10px] text-slate-500">Designed & Developed by Saad Shah | Built to Defend, Designed to Inspire</p>
     </footer>
 

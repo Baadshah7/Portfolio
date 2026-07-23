@@ -51,6 +51,18 @@
     box-shadow: 0 16px 36px -12px rgba(59, 130, 246, 0.25) !important;
 }
 
+/* Mobile Navigation Drawer Hardware Acceleration */
+#mobile-drawer {
+    will-change: transform;
+}
+
+/* Certificate Viewer Modal Hardware Acceleration & Smooth Zoom */
+#cert-modal-img {
+    will-change: transform;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
 /* Accessibility: Respect user's preferences for reduced motion */
 @media (prefers-reduced-motion: reduce) {
     * {
