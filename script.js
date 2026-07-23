@@ -623,6 +623,37 @@ function initProfileVisitCounter() {
         });
 }
 
+// 🚀 BACK TO TOP BUTTON
+function initBackToTop() {
+    const backToTopBtn = document.getElementById("back-to-top");
+    if (!backToTopBtn) return;
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.remove("opacity-0", "translate-y-10", "pointer-events-none");
+            backToTopBtn.classList.add("opacity-100", "translate-y-0", "cursor-pointer");
+        } else {
+            backToTopBtn.classList.add("opacity-0", "translate-y-10", "pointer-events-none");
+            backToTopBtn.classList.remove("opacity-100", "translate-y-0", "cursor-pointer");
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
+
+// 📅 DYNAMIC COPYRIGHT YEAR
+function initDynamicYear() {
+    const yearSpan = document.getElementById("current-year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
@@ -632,4 +663,144 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollProgress();
     initCertificateViewer();
     initProfileVisitCounter();
+    initBackToTop();
+    initDynamicYear();
+    initPremiumCursor();
+    initVisitorCounter();
 });
+// 🎯 PREMIUM CUSTOM CURSOR
+function initPremiumCursor() {
+    // Disable on mobile/touch screens
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    
+    // Accessibility: Disable if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    document.body.classList.add('cursor-enabled');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let isMoving = false;
+
+    // Throttle via requestAnimationFrame
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!isMoving) {
+            isMoving = true;
+            requestAnimationFrame(renderCursor);
+        }
+    });
+
+    const LERP_FACTOR = 0.18;
+
+    function renderCursor() {
+        if (document.hidden) {
+            isMoving = false;
+            return;
+        }
+
+        // Dot follows instantly
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+        // Ring follows with Lerp
+        ringX += (mouseX - ringX) * LERP_FACTOR;
+        ringY += (mouseY - ringY) * LERP_FACTOR;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+
+        // Continue loop if ring is still catching up (threshold 0.1px)
+        if (Math.abs(mouseX - ringX) > 0.1 || Math.abs(mouseY - ringY) > 0.1) {
+            requestAnimationFrame(renderCursor);
+        } else {
+            isMoving = false;
+        }
+    }
+
+    // Interactive Hover Effects
+    const interactives = document.querySelectorAll('a, button, input, textarea, select, summary, [role="button"], [data-cursor], .hover-lift');
+    
+    interactives.forEach(el => {
+        el.addEventListener('pointerenter', () => {
+            ring.classList.add('cursor-hover');
+            // Check if it's a special card/button to add pulse glow
+            if (el.classList.contains('hover-lift') || el.classList.contains('bg-slate-900')) {
+                ring.classList.add('cursor-glow');
+            }
+        });
+        
+        el.addEventListener('pointerleave', () => {
+            ring.classList.remove('cursor-hover');
+            ring.classList.remove('cursor-glow');
+        });
+    });
+
+    // Handle visibility pause/resume
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !isMoving) {
+            isMoving = true;
+            requestAnimationFrame(renderCursor);
+        }
+    });
+}
+
+// 👁️ VISITOR COUNTER ANIMATION & FETCH
+async function initVisitorCounter() {
+    const counterEl = document.getElementById('visitor-count');
+    if (!counterEl) return;
+
+    // PLACEHOLDER: The user needs to replace YOUR_GOATCOUNTER_CODE with their actual site code!
+    const GOATCOUNTER_CODE = 'YOUR_GOATCOUNTER_CODE'; 
+    const url = `https://${GOATCOUNTER_CODE}.goatcounter.com/counter//Portfolio/.json`;
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout
+
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (!response.ok) throw new Error("GoatCounter API failed");
+        
+        const data = await response.json();
+        let totalVisits = 0;
+        
+        // GoatCounter returns numbers with spaces for thousands (e.g. "1 274")
+        if (data && data.count) {
+             totalVisits = parseInt(data.count.replace(/\D/g, '')) || 0;
+        }
+
+        // Animate counting
+        animateValue(counterEl, 0, totalVisits, 700);
+
+    } catch (error) {
+        console.warn("Visitor counter fetch failed or timed out:", error);
+        counterEl.textContent = '—';
+    }
+}
+
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        
+        // Easing function (easeOutQuart) for premium slowing down effect
+        const easeProgress = 1 - Math.pow(1 - progress, 4);
+        
+        const currentVal = Math.floor(easeProgress * (end - start) + start);
+        obj.innerHTML = currentVal.toLocaleString();
+        
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            obj.innerHTML = end.toLocaleString();
+        }
+    };
+    window.requestAnimationFrame(step);
+}
