@@ -282,6 +282,7 @@ const certificatesData = [
         id: "cert-01",
         title: "Advance Prompt Hacking",
         issuer: "Learn Prompting",
+        category: "ai",
         issueDate: "Jun 2026",
         credentialId: "LP-2026-APH-8821",
         image: "images/certificates/advance_prompt_hacking.jpg",
@@ -291,6 +292,7 @@ const certificatesData = [
         id: "cert-02",
         title: "Intro to Artificial Intelligence",
         issuer: "HP LIFE",
+        category: "ai",
         issueDate: "Sep 2025",
         credentialId: "HPL-2025-AI-9912",
         image: "images/certificates/hp_intro_ai.jpg",
@@ -300,6 +302,7 @@ const certificatesData = [
         id: "cert-03",
         title: "Cybersecurity Awareness",
         issuer: "HP LIFE",
+        category: "cybersecurity",
         issueDate: "Sep 2025",
         credentialId: "HPL-2025-SEC-4401",
         image: "images/certificates/hp_cybersecurity_awareness.jpg",
@@ -309,6 +312,7 @@ const certificatesData = [
         id: "cert-04",
         title: "Deloitte Cyber Job Simulation",
         issuer: "Deloitte (Forage)",
+        category: "cybersecurity",
         issueDate: "Jul 2025",
         credentialId: "FORAGE-DELOITTE-CYBER-2025",
         image: "images/certificates/deloitte_cyber_simulation.jpg",
@@ -318,6 +322,7 @@ const certificatesData = [
         id: "cert-05",
         title: "Tata Cybersecurity Analyst Job Simulation",
         issuer: "Tata (Forage)",
+        category: "cybersecurity",
         issueDate: "Sep 2025",
         credentialId: "FORAGE-TATA-CYBER-2025",
         image: "images/certificates/tata_cybersecurity_analyst.jpg",
@@ -327,6 +332,7 @@ const certificatesData = [
         id: "cert-06",
         title: "Cybersecurity - Beginner to Expert",
         issuer: "Udemy",
+        category: "cybersecurity",
         issueDate: "May 2025",
         credentialId: "UC-2025-BEGINNER-EXPERT",
         image: "images/certificates/udemy_cybersecurity.jpg",
@@ -336,6 +342,7 @@ const certificatesData = [
         id: "cert-07",
         title: "Gen AI 101 with Pieces",
         issuer: "Pieces for Developers",
+        category: "ai",
         issueDate: "Feb 2025",
         credentialId: "PIECES-GENAI-2025",
         image: "images/certificates/pieces_gen_ai_101.jpg",
@@ -345,10 +352,41 @@ const certificatesData = [
         id: "cert-08",
         title: "Cybersecurity - Beginner to Expert",
         issuer: "LinkedIn Learning Community",
+        category: "cybersecurity",
         issueDate: "Jul 2024",
         credentialId: "LL-2024-CYBER-COMM",
         image: "images/certificates/linkedin_cybersecurity.jpg",
         verifyUrl: "https://www.linkedin.com"
+    },
+    {
+        id: "cert-09",
+        title: "Hackathon Participation Certificate #1",
+        issuer: "TCET Hackathon",
+        category: "hackathon",
+        issueDate: "Mar 2026",
+        credentialId: "HACK-2026-TCET-01",
+        image: "images/certificates/hackathon_cert_1.jpg",
+        verifyUrl: "#"
+    },
+    {
+        id: "cert-10",
+        title: "Hackathon Participation Certificate #2",
+        issuer: "National Cyber Hackathon",
+        category: "hackathon",
+        issueDate: "Jan 2026",
+        credentialId: "HACK-2026-NAT-02",
+        image: "images/certificates/hackathon_cert_2.jpg",
+        verifyUrl: "#"
+    },
+    {
+        id: "cert-11",
+        title: "Debate Poster Competition Certificate",
+        issuer: "TCET Student Chapter",
+        category: "event",
+        issueDate: "Aug 2025",
+        credentialId: "EVENT-2025-DEB-01",
+        image: "images/certificates/debate_poster_event.jpg",
+        verifyUrl: "#"
     }
 ];
 
@@ -686,6 +724,89 @@ function initDynamicYear() {
     }
 }
 
+// 🏷️ CERTIFICATION REGISTRY DYNAMIC FILTER & COUNT ENGINE
+function initCertificateFilters() {
+    const filterPills = document.querySelectorAll(".cert-filter-pill");
+    const certCards = document.querySelectorAll(".cert-card");
+    if (!filterPills.length || !certCards.length) return;
+
+    // 1. Automatically calculate category counts from certificatesData array
+    const counts = {
+        all: certificatesData.length,
+        cybersecurity: 0,
+        ai: 0,
+        hackathon: 0,
+        event: 0
+    };
+
+    certificatesData.forEach(cert => {
+        if (cert.category && counts.hasOwnProperty(cert.category)) {
+            counts[cert.category]++;
+        }
+    });
+
+    // 2. Populate count numbers inside filter pills
+    filterPills.forEach(pill => {
+        const cat = pill.getAttribute("data-filter");
+        const countSpan = pill.querySelector(".cert-filter-count");
+        if (countSpan && counts.hasOwnProperty(cat)) {
+            countSpan.textContent = `(${counts[cat]})`;
+        }
+    });
+
+    // 3. Category filtering handler with smooth 60fps fade out / fade in
+    function setCategory(targetCategory, targetPill) {
+        filterPills.forEach(p => {
+            p.classList.remove("active-pill", "bg-bluePrimary", "text-white", "shadow-lg", "shadow-bluePrimary/25");
+            p.classList.add("inactive-pill", "bg-slate800/80", "text-textMuted", "border", "border-slate700/60");
+            p.setAttribute("aria-selected", "false");
+        });
+
+        targetPill.classList.remove("inactive-pill", "bg-slate800/80", "text-textMuted", "border", "border-slate700/60");
+        targetPill.classList.add("active-pill", "bg-bluePrimary", "text-white", "shadow-lg", "shadow-bluePrimary/25");
+        targetPill.setAttribute("aria-selected", "true");
+
+        // Fade out non-matching cards and fade in matching ones
+        certCards.forEach(card => {
+            const cardCat = card.getAttribute("data-category");
+            const matches = targetCategory === "all" || cardCat === targetCategory;
+
+            if (matches) {
+                card.style.display = "flex";
+                requestAnimationFrame(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "scale(1)";
+                    card.style.pointerEvents = "auto";
+                });
+            } else {
+                card.style.opacity = "0";
+                card.style.transform = "scale(0.95)";
+                card.style.pointerEvents = "none";
+                setTimeout(() => {
+                    if (card.style.opacity === "0") {
+                        card.style.display = "none";
+                    }
+                }, 280);
+            }
+        });
+    }
+
+    // Attach click and keyboard events
+    filterPills.forEach(pill => {
+        pill.addEventListener("click", () => {
+            const category = pill.getAttribute("data-filter");
+            setCategory(category, pill);
+        });
+
+        pill.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                pill.click();
+            }
+        });
+    });
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
@@ -694,6 +815,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileDrawer();
     initScrollProgress();
     initCertificateViewer();
+    initCertificateFilters();
     initLiveVisitorCounter();
     initBackToTop();
     initDynamicYear();

@@ -793,8 +793,8 @@
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5 text-center">
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
-                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">Top 10%</p>
-                <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Rank #158,169</p>
+                <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">Top 1%</p>
+                <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Rank #21,000</p>
             </div>
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
                 <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">55</p>
@@ -802,14 +802,14 @@
             </div>
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
                 <div class="flex items-baseline justify-center space-x-1">
-                    <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">20</p>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">7</p>
                     <span class="text-[10px] text-orange-400 font-mono font-bold uppercase">Days</span>
                 </div>
                 <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Current Streak</p>
             </div>
             <div class="p-5 bg-slate800 rounded-xl border border-slate700/60 shadow-md">
                 <div class="flex items-baseline justify-center space-x-1">
-                    <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">20</p>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-bluePrimary font-mono">26</p>
                     <span class="text-[10px] text-green-400 font-mono font-bold uppercase">Max</span>
                 </div>
                 <p class="text-[11px] sm:text-xs text-textMuted uppercase tracking-wider mt-1.5">Best Streak</p>
@@ -1030,17 +1030,41 @@
     <hr class="border-slate800 max-w-7xl mx-auto">
 
     <section id="certifications" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="text-center max-w-3xl mx-auto mb-8">
             <h2 class="text-3xl font-extrabold text-textLight relative inline-block pb-3">
                 Certifications Registry
                 <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-bluePrimary rounded-full"></span>
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- 🏷️ CERTIFICATION CATEGORY FILTER BAR -->
+        <div role="tablist" aria-label="Certificate Category Filters" class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10 px-2 max-w-4xl mx-auto">
+            <button role="tab" aria-selected="true" aria-controls="cert-grid" data-filter="all" id="filter-tab-all"
+                class="cert-filter-pill active-pill px-4 py-2 rounded-full text-xs sm:text-sm font-mono font-semibold transition-all duration-300 flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <span>All</span> <span class="cert-filter-count opacity-90 font-bold">(0)</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="cert-grid" data-filter="cybersecurity" id="filter-tab-cybersecurity"
+                class="cert-filter-pill inactive-pill px-4 py-2 rounded-full text-xs sm:text-sm font-mono font-semibold transition-all duration-300 flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <span>🛡 Cybersecurity</span> <span class="cert-filter-count opacity-75 font-bold">(0)</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="cert-grid" data-filter="ai" id="filter-tab-ai"
+                class="cert-filter-pill inactive-pill px-4 py-2 rounded-full text-xs sm:text-sm font-mono font-semibold transition-all duration-300 flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <span>🤖 Artificial Intelligence</span> <span class="cert-filter-count opacity-75 font-bold">(0)</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="cert-grid" data-filter="hackathon" id="filter-tab-hackathon"
+                class="cert-filter-pill inactive-pill px-4 py-2 rounded-full text-xs sm:text-sm font-mono font-semibold transition-all duration-300 flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <span>🏆 Hackathons</span> <span class="cert-filter-count opacity-75 font-bold">(0)</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="cert-grid" data-filter="event" id="filter-tab-event"
+                class="cert-filter-pill inactive-pill px-4 py-2 rounded-full text-xs sm:text-sm font-mono font-semibold transition-all duration-300 flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <span>🎤 Events</span> <span class="cert-filter-count opacity-75 font-bold">(0)</span>
+            </button>
+        </div>
+
+        <div id="cert-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- 1. Advance Prompt Hacking -->
-            <div onclick="openCertificateViewer('cert-01', event)" tabindex="0" role="button" aria-label="View Advance Prompt Hacking certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="ai" onclick="openCertificateViewer('cert-01', event)" tabindex="0" role="button" aria-label="View Advance Prompt Hacking certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-terminal text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Advance Prompt Hacking</h4>
@@ -1054,8 +1078,8 @@
             </div>
 
             <!-- 2. HP LIFE - Intro to AI -->
-            <div onclick="openCertificateViewer('cert-02', event)" tabindex="0" role="button" aria-label="View Intro to Artificial Intelligence certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="ai" onclick="openCertificateViewer('cert-02', event)" tabindex="0" role="button" aria-label="View Intro to Artificial Intelligence certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-robot text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Intro to Artificial Intelligence</h4>
@@ -1069,8 +1093,8 @@
             </div>
 
             <!-- 3. HP LIFE - Intro to Cybersecurity Awareness -->
-            <div onclick="openCertificateViewer('cert-03', event)" tabindex="0" role="button" aria-label="View Cybersecurity Awareness certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="cybersecurity" onclick="openCertificateViewer('cert-03', event)" tabindex="0" role="button" aria-label="View Cybersecurity Awareness certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-shield-halved text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Cybersecurity Awareness</h4>
@@ -1084,8 +1108,8 @@
             </div>
 
             <!-- 4. Deloitte Cyber Job Simulation -->
-            <div onclick="openCertificateViewer('cert-04', event)" tabindex="0" role="button" aria-label="View Deloitte Cyber Job Simulation certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="cybersecurity" onclick="openCertificateViewer('cert-04', event)" tabindex="0" role="button" aria-label="View Deloitte Cyber Job Simulation certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-building-shield text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Deloitte Cyber Job Simulation</h4>
@@ -1099,8 +1123,8 @@
             </div>
 
             <!-- 5. Tata - Cybersecurity Analyst Job Simulation -->
-            <div onclick="openCertificateViewer('cert-05', event)" tabindex="0" role="button" aria-label="View Tata Cybersecurity Analyst Job Simulation certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="cybersecurity" onclick="openCertificateViewer('cert-05', event)" tabindex="0" role="button" aria-label="View Tata Cybersecurity Analyst Job Simulation certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-laptop-code text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Tata Cybersecurity Analyst Job Simulation</h4>
@@ -1114,8 +1138,8 @@
             </div>
 
             <!-- 6. Cybersecurity - From Beginner to Expert (Udemy) -->
-            <div onclick="openCertificateViewer('cert-06', event)" tabindex="0" role="button" aria-label="View Cybersecurity Beginner to Expert Udemy certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="cybersecurity" onclick="openCertificateViewer('cert-06', event)" tabindex="0" role="button" aria-label="View Cybersecurity Beginner to Expert Udemy certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-award text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Cybersecurity - Beginner to Expert</h4>
@@ -1129,8 +1153,8 @@
             </div>
 
             <!-- 7. Gen AI 101 with Pieces -->
-            <div onclick="openCertificateViewer('cert-07', event)" tabindex="0" role="button" aria-label="View Gen AI 101 with Pieces certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="ai" onclick="openCertificateViewer('cert-07', event)" tabindex="0" role="button" aria-label="View Gen AI 101 with Pieces certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-brain text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Gen AI 101 with Pieces</h4>
@@ -1144,8 +1168,8 @@
             </div>
 
             <!-- 8. Cybersecurity - From Beginner to Expert (LinkedIn) -->
-            <div onclick="openCertificateViewer('cert-08', event)" tabindex="0" role="button" aria-label="View Cybersecurity Beginner to Expert LinkedIn certificate"
-                class="bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+            <div data-category="cybersecurity" onclick="openCertificateViewer('cert-08', event)" tabindex="0" role="button" aria-label="View Cybersecurity Beginner to Expert LinkedIn certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-graduation-cap text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Cybersecurity - Beginner to Expert</h4>
@@ -1157,6 +1181,48 @@
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
+
+            <!-- 9. Hackathon Participation Certificate #1 -->
+            <div data-category="hackathon" onclick="openCertificateViewer('cert-09', event)" tabindex="0" role="button" aria-label="View Hackathon Participation Certificate #1"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-trophy text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Hackathon Participation Certificate #1</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: TCET Hackathon</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Mar 2026</p>
+                </div>
+                <button onclick="openCertificateViewer('cert-09', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 10. Hackathon Participation Certificate #2 -->
+            <div data-category="hackathon" onclick="openCertificateViewer('cert-10', event)" tabindex="0" role="button" aria-label="View Hackathon Participation Certificate #2"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-code text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Hackathon Participation Certificate #2</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: National Cyber Hackathon</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Jan 2026</p>
+                </div>
+                <button onclick="openCertificateViewer('cert-10', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
+                    VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- 11. Debate Poster Competition Certificate -->
+            <div data-category="event" onclick="openCertificateViewer('cert-11', event)" tabindex="0" role="button" aria-label="View Debate Poster Competition Certificate"
+                class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
+                <div class="space-y-2">
+                    <i class="fa-solid fa-bullhorn text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Debate Poster Competition Certificate</h4>
+                    <p class="text-sm font-mono text-textMuted">Issuer: TCET Student Chapter</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: Aug 2025</p>
+                </div>
+                <button onclick="openCertificateViewer('cert-11', event); event.stopPropagation();"
+                    class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
                     VERIFY_LOG <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
                 </button>
             </div>
