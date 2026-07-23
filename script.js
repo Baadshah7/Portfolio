@@ -579,24 +579,24 @@ async function initLiveVisitorCounter() {
     const counterElements = document.querySelectorAll(".visit-counter-value, #visitor-count");
     if (!counterElements.length) return;
 
-    const STORAGE_KEY = "saad_shah_portfolio_last_visit_count";
-    const API_ENDPOINT = "https://api.counterapi.dev/v1/baadshah7_portfolio_live/visits/up";
-    const BASE_OFFSET = 1248; // Base scale baseline
+    const STORAGE_KEY = "saad_shah_portfolio_visit_counter_v2";
+    const API_ENDPOINT = "https://api.counterapi.dev/v1/baadshah7_portfolio_v2/visits/up";
+    const BASE_OFFSET = 0; // Starts clean from 0 and saves live visits
 
-    // 1. Load cached count or default baseline
+    // 1. Load cached count or start cleanly at 0
     let storedCount = parseInt(localStorage.getItem(STORAGE_KEY) || "0", 10);
-    if (isNaN(storedCount) || storedCount < BASE_OFFSET) {
-        storedCount = BASE_OFFSET;
+    if (isNaN(storedCount) || storedCount < 0) {
+        storedCount = 0;
     }
 
-    // Always increment locally on every page visit/refresh for instant live response
+    // Increment locally on every page visit/refresh for instant response
     let currentDisplayCount = storedCount + 1;
     localStorage.setItem(STORAGE_KEY, currentDisplayCount.toString());
 
-    // Immediately render current local incremented count
+    // Immediately render current local count
     renderAll(currentDisplayCount);
 
-    // 2. Asynchronously hit global server counter endpoint to register hit & fetch global total
+    // 2. Asynchronously hit global server counter API to register hit & persist server total
     try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 4000); // 4-second timeout
@@ -607,7 +607,7 @@ async function initLiveVisitorCounter() {
         if (response.ok) {
             const data = await response.json();
             if (data && typeof data.count === "number" && data.count > 0) {
-                // Calculate synchronized global count
+                // Calculate synchronized global count (starting from 0)
                 const serverGlobalCount = BASE_OFFSET + data.count;
                 const finalCount = Math.max(serverGlobalCount, currentDisplayCount);
 
@@ -616,6 +616,8 @@ async function initLiveVisitorCounter() {
                     currentDisplayCount = finalCount;
                     localStorage.setItem(STORAGE_KEY, currentDisplayCount.toString());
                     animateValueAll(counterElements, prevCount, currentDisplayCount, 800);
+                } else {
+                    localStorage.setItem(STORAGE_KEY, currentDisplayCount.toString());
                 }
             }
         }
