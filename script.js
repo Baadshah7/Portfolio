@@ -807,6 +807,87 @@ function initCertificateFilters() {
     });
 }
 
+// 🎯 PREMIUM CUSTOM CURSOR
+function initPremiumCursor() {
+    // Disable on mobile/touch screens
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    
+    // Accessibility: Disable if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    document.body.classList.add('cursor-enabled');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let isMoving = false;
+
+    // Throttle via requestAnimationFrame
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!isMoving) {
+            isMoving = true;
+            requestAnimationFrame(renderCursor);
+        }
+    });
+
+    const LERP_FACTOR = 0.18;
+
+    function renderCursor() {
+        if (document.hidden) {
+            isMoving = false;
+            return;
+        }
+
+        // Dot follows instantly
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+        // Ring follows with Lerp
+        ringX += (mouseX - ringX) * LERP_FACTOR;
+        ringY += (mouseY - ringY) * LERP_FACTOR;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+
+        // Continue loop if ring is still catching up (threshold 0.1px)
+        if (Math.abs(mouseX - ringX) > 0.1 || Math.abs(mouseY - ringY) > 0.1) {
+            requestAnimationFrame(renderCursor);
+        } else {
+            isMoving = false;
+        }
+    }
+
+    // Interactive Hover Effects
+    const interactives = document.querySelectorAll('a, button, input, textarea, select, summary, [role="button"], [data-cursor], .hover-lift');
+    
+    interactives.forEach(el => {
+        el.addEventListener('pointerenter', () => {
+            ring.classList.add('cursor-hover');
+            // Check if it's a special card/button to add pulse glow
+            if (el.classList.contains('hover-lift') || el.classList.contains('bg-slate-900')) {
+                ring.classList.add('cursor-glow');
+            }
+        });
+        
+        el.addEventListener('pointerleave', () => {
+            ring.classList.remove('cursor-hover');
+            ring.classList.remove('cursor-glow');
+        });
+    });
+
+    // Handle visibility pause/resume
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !isMoving) {
+            isMoving = true;
+            requestAnimationFrame(renderCursor);
+        }
+    });
+}
+
 // Fire up scripts on DOM content ready
 document.addEventListener("DOMContentLoaded", () => {
     typeAnimation();
