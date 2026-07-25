@@ -284,8 +284,8 @@ const certificatesData = [
         issuer: "Learn Prompting",
         category: "ai",
         issueDate: "Jun 2026",
-        credentialId: "LP-2026-APH-8821",
-        image: "images/certificates/advance_prompt_hacking.jpg",
+        credentialId: "v5szp9i8rx",
+        image: "images/certificates/Advance Prompt Hacking.pdf",
         verifyUrl: "https://learnprompting.org"
     },
     {
@@ -300,13 +300,13 @@ const certificatesData = [
     },
     {
         id: "cert-03",
-        title: "Cybersecurity Awareness",
+        title: "Introduction to Cybersecurity Awareness",
         issuer: "HP LIFE",
         category: "cybersecurity",
         issueDate: "Sep 2025",
-        credentialId: "HPL-2025-SEC-4401",
-        image: "images/certificates/hp_cybersecurity_awareness.jpg",
-        verifyUrl: "https://www.life-global.org"
+        credentialId: "acb07944-f469-4551-b822-2eecf6e52bd3",
+        image: "images/certificates/Intro to Cyber Awareness (HP).pdf",
+        verifyUrl: "#"
     },
     {
         id: "cert-04",
@@ -315,7 +315,7 @@ const certificatesData = [
         category: "cybersecurity",
         issueDate: "Jul 2025",
         credentialId: "FORAGE-DELOITTE-CYBER-2025",
-        image: "images/certificates/deloitte_cyber_simulation.jpg",
+        image: "images/certificates/Deloitte Cyber Job Simulation.pdf",
         verifyUrl: "https://www.theforage.com"
     },
     {
@@ -325,7 +325,7 @@ const certificatesData = [
         category: "cybersecurity",
         issueDate: "Sep 2025",
         credentialId: "FORAGE-TATA-CYBER-2025",
-        image: "images/certificates/tata_cybersecurity_analyst.jpg",
+        image: "images/certificates/Tata Cyber Job Simulation.pdf",
         verifyUrl: "https://www.theforage.com"
     },
     {
@@ -335,18 +335,18 @@ const certificatesData = [
         category: "cybersecurity",
         issueDate: "May 2025",
         credentialId: "UC-2025-BEGINNER-EXPERT",
-        image: "images/certificates/udemy_cybersecurity.jpg",
+        image: "images/certificates/Cybersecurity Beginner (Udemy).pdf",
         verifyUrl: "https://www.udemy.com"
     },
     {
         id: "cert-07",
-        title: "Gen AI 101 with Pieces",
-        issuer: "Pieces for Developers",
+        title: "ChatGPT for Everyone",
+        issuer: "Learn Prompting",
         category: "ai",
-        issueDate: "Feb 2025",
-        credentialId: "PIECES-GENAI-2025",
-        image: "images/certificates/pieces_gen_ai_101.jpg",
-        verifyUrl: "https://pieces.app"
+        issueDate: "Jun 2026",
+        credentialId: "8gxlchwhxt",
+        image: "images/certificates/Chatgpt Certificate.pdf",
+        verifyUrl: "https://learnprompting.org"
     },
     {
         id: "cert-08",
@@ -355,37 +355,57 @@ const certificatesData = [
         category: "cybersecurity",
         issueDate: "Jul 2024",
         credentialId: "LL-2024-CYBER-COMM",
-        image: "images/certificates/linkedin_cybersecurity.jpg",
+        image: "images/certificates/Cybersecurity Beginner to Expert.pdf",
         verifyUrl: "https://www.linkedin.com"
     },
     {
         id: "cert-09",
-        title: "Hackathon Participation Certificate #1",
-        issuer: "TCET Hackathon",
+        title: "Unthink Hackathon",
+        issuer: "M. H. Saboo Siddik College of Engineering",
         category: "hackathon",
-        issueDate: "Mar 2026",
-        credentialId: "HACK-2026-TCET-01",
-        image: "images/certificates/hackathon_cert_1.jpg",
+        issueDate: "Apr 2026",
+        credentialId: "UNTHINK-2026",
+        image: "images/certificates/Unthink Hackathon.pdf",
         verifyUrl: "#"
     },
     {
         id: "cert-10",
-        title: "Hackathon Participation Certificate #2",
-        issuer: "National Cyber Hackathon",
+        title: "VES-Hack-It",
+        issuer: "Unstop",
         category: "hackathon",
         issueDate: "Jan 2026",
-        credentialId: "HACK-2026-NAT-02",
-        image: "images/certificates/hackathon_cert_2.jpg",
+        credentialId: "VES-HACKIT-2026",
+        image: "images/certificates/VES Hacakthon Certificate (Unstop) .pdf",
         verifyUrl: "#"
     },
     {
         id: "cert-11",
-        title: "Debate Poster Competition Certificate",
-        issuer: "TCET Student Chapter",
+        title: "Hacker's Gambit CTF",
+        issuer: "Jaihind College of Engineering",
         category: "event",
         issueDate: "Aug 2025",
-        credentialId: "EVENT-2025-DEB-01",
-        image: "images/certificates/debate_poster_event.jpg",
+        credentialId: "HG-CTF-2025",
+        image: "images/certificates/Hacker's Gambit CTF.pdf",
+        verifyUrl: "#"
+    },
+    {
+        id: "cert-12",
+        title: "Co-author of Anthology Midnight Thoughts",
+        issuer: "Everlasting Publication",
+        category: "event",
+        issueDate: "2026",
+        credentialId: "ISBN 978-81-69026-22-2",
+        image: "images/certificates/Midnight Thoughts Book.pdf",
+        verifyUrl: "#"
+    },
+    {
+        id: "cert-13",
+        title: "Multicorn Paper Presentation - Multiagent System for Clinical Assistance with Human-in-the-Loop",
+        issuer: "Thakur College of Engineering and Technology",
+        category: "event",
+        issueDate: "Mar 2026",
+        credentialId: "TCET-MULTICORN-2026",
+        image: "images/certificates/Multicorn Certificate.pdf",
         verifyUrl: "#"
     }
 ];
@@ -393,27 +413,36 @@ const certificatesData = [
 let currentCertIndex = 0;
 let currentZoomScale = 1;
 let lastActiveCertTrigger = null;
+window.currentActiveCategory = "all"; // Global filter category
+
+function getFilteredCertificates() {
+    if (!window.currentActiveCategory || window.currentActiveCategory === "all") {
+        return certificatesData;
+    }
+    return certificatesData.filter(c => c.category === window.currentActiveCategory);
+}
 
 function renderCertificate(index) {
-    if (certificatesData.length === 0) return;
+    const filtered = getFilteredCertificates();
+    if (filtered.length === 0) return;
 
-    if (index < 0) index = certificatesData.length - 1;
-    if (index >= certificatesData.length) index = 0;
+    if (index < 0) index = filtered.length - 1;
+    if (index >= filtered.length) index = 0;
     currentCertIndex = index;
 
-    const data = certificatesData[currentCertIndex];
+    const data = filtered[currentCertIndex];
     if (!data) return;
 
     // Preload next and previous certificate images for instant navigation
-    const prevIdx = (currentCertIndex - 1 + certificatesData.length) % certificatesData.length;
-    const nextIdx = (currentCertIndex + 1) % certificatesData.length;
-    if (certificatesData[prevIdx] && certificatesData[prevIdx].image) {
+    const prevIdx = (currentCertIndex - 1 + filtered.length) % filtered.length;
+    const nextIdx = (currentCertIndex + 1) % filtered.length;
+    if (filtered[prevIdx] && filtered[prevIdx].image) {
         const prevImg = new Image();
-        prevImg.src = certificatesData[prevIdx].image;
+        prevImg.src = filtered[prevIdx].image;
     }
-    if (certificatesData[nextIdx] && certificatesData[nextIdx].image) {
+    if (filtered[nextIdx] && filtered[nextIdx].image) {
         const nextImg = new Image();
-        nextImg.src = certificatesData[nextIdx].image;
+        nextImg.src = filtered[nextIdx].image;
     }
 
     // Reset zoom scale on certificate change
@@ -434,15 +463,33 @@ function renderCertificate(index) {
     if (modalIssuer) modalIssuer.textContent = data.issuer;
     if (modalDate) modalDate.textContent = data.issueDate;
     if (modalCredId) modalCredId.textContent = data.credentialId || "N/A";
-    if (modalImg) {
-        modalImg.onerror = function() {
-            this.onerror = null;
-            this.src = "images/cert_placeholder.jpg";
-        };
-        modalImg.src = data.image;
-        modalImg.alt = `${data.title} Certificate`;
+    
+    let modalPdf = document.getElementById("cert-modal-pdf");
+    if (data.image && data.image.toLowerCase().endsWith(".pdf")) {
+        if (modalImg) modalImg.classList.add("hidden");
+        if (!modalPdf) {
+            modalPdf = document.createElement("iframe");
+            modalPdf.id = "cert-modal-pdf";
+            modalPdf.className = "w-full h-[70vh] rounded-lg border border-slate700/60 shadow-xl bg-slate900";
+            if (modalImg && modalImg.parentNode) {
+                modalImg.parentNode.appendChild(modalPdf);
+            }
+        }
+        modalPdf.src = data.image;
+        modalPdf.classList.remove("hidden");
+    } else {
+        if (modalPdf) modalPdf.classList.add("hidden");
+        if (modalImg) {
+            modalImg.classList.remove("hidden");
+            modalImg.onerror = function() {
+                this.onerror = null;
+                this.src = "images/cert_placeholder.jpg";
+            };
+            modalImg.src = data.image;
+            modalImg.alt = `${data.title} Certificate`;
+        }
     }
-    if (modalCounter) modalCounter.textContent = `${currentCertIndex + 1} / ${certificatesData.length}`;
+    if (modalCounter) modalCounter.textContent = `${currentCertIndex + 1} / ${filtered.length}`;
 
     // Gracefully handle Verify Credential button visibility
     if (modalVerifyBtn) {
@@ -484,7 +531,7 @@ function navigateCertificate(dir) {
     renderCertificate(currentCertIndex + dir);
 }
 
-// ID-based lookup with index fallback
+// ID-based lookup with index fallback within the filtered category
 function openCertificateViewer(targetIdOrIndex, event) {
     if (event) {
         lastActiveCertTrigger = event.currentTarget || event.target;
@@ -492,9 +539,14 @@ function openCertificateViewer(targetIdOrIndex, event) {
     const modal = document.getElementById("cert-viewer-modal");
     if (!modal) return;
 
+    // Detect active filter pill and update global filter state
+    const activePill = document.querySelector(".cert-filter-pill.active-pill");
+    window.currentActiveCategory = activePill ? activePill.getAttribute("data-filter") : "all";
+
+    const filtered = getFilteredCertificates();
     let targetIndex = 0;
     if (typeof targetIdOrIndex === "string") {
-        const foundIndex = certificatesData.findIndex(c => c.id === targetIdOrIndex);
+        const foundIndex = filtered.findIndex(c => c.id === targetIdOrIndex);
         targetIndex = foundIndex !== -1 ? foundIndex : 0;
     } else if (typeof targetIdOrIndex === "number") {
         targetIndex = targetIdOrIndex;
