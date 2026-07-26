@@ -941,8 +941,201 @@ function initPremiumCursor() {
     });
 }
 
-// Fire up scripts on DOM content ready
-document.addEventListener("DOMContentLoaded", () => {
+/* ==================================================
+   PREMIUM CYBER BOOT ANIMATION MODULE
+   ================================================== */
+const checks = [
+    "[INITIALIZING CYBERSECURITY PORTFOLIO...]",
+    "✔ Loading Security Modules",
+    "✔ Initializing Threat Intelligence",
+    "✔ Loading Digital Forensics Toolkit",
+    "✔ Verifying Certificates",
+    "✔ Connecting Secure Dashboard",
+    "✔ Portfolio Ready"
+];
+
+let activeTimeouts = [];
+let animationFrameId = null;
+let bootScrollY = 0;
+
+function lockScroll() {
+    bootScrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${bootScrollY}px`;
+    document.body.style.width = "100%";
+}
+
+function unlockScroll() {
+    if (document.body.style.position === "fixed") {
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        window.scrollTo(0, bootScrollY);
+    }
+}
+
+function cleanupBoot() {
+    activeTimeouts.forEach(clearTimeout);
+    activeTimeouts = [];
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+}
+
+function skipAnimation() {
+    cleanupBoot();
+    
+    const bootScreen = document.getElementById("boot-screen");
+    if (bootScreen) {
+        bootScreen.style.display = "none";
+        bootScreen.remove();
+    }
+    
+    unlockScroll();
+    
+    try {
+        sessionStorage.setItem("bootPlayed", "true");
+    } catch (e) {
+        // Fallback for private browsing mode
+    }
+    
+    document.documentElement.classList.remove("boot-active");
+    document.documentElement.classList.add("boot-skipped");
+    
+    initializeAllComponents();
+}
+
+function handleKeyDown(e) {
+    if (e.key === "Escape") {
+        skipAnimation();
+    }
+}
+
+function handleVisibilityChange() {
+    if (document.hidden) {
+        skipAnimation();
+    }
+}
+
+function startBootSequence() {
+    const bootScreen = document.getElementById("boot-screen");
+    const terminalEl = document.getElementById("boot-terminal");
+    const activeLineEl = document.getElementById("boot-active-line");
+    const fillEl = document.getElementById("boot-progress-fill");
+    const textEl = document.getElementById("boot-progress-text");
+    const progressContainer = document.getElementById("boot-progress-container");
+    const brandingEl = document.getElementById("boot-branding");
+    
+    if (!bootScreen || !terminalEl || !activeLineEl || !fillEl || !textEl || !progressContainer || !brandingEl) {
+        skipAnimation();
+        return;
+    }
+    
+    lockScroll();
+    
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    
+    // Progress Bar Animation (0.0s to 2.0s)
+    const duration = 2000;
+    let startTimestamp = null;
+    let lastPercent = -1;
+    
+    function updateProgress(progressVal) {
+        const percentInt = Math.floor(progressVal * 100);
+        fillEl.style.width = `${progressVal * 100}%`;
+        if (percentInt !== lastPercent) {
+            lastPercent = percentInt;
+            textEl.textContent = `${percentInt}%`;
+        }
+    }
+    
+    function animateProgressBar(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const elapsed = timestamp - startTimestamp;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        updateProgress(progress);
+        
+        if (progress < 1) {
+            animationFrameId = requestAnimationFrame(animateProgressBar);
+        }
+    }
+    animationFrameId = requestAnimationFrame(animateProgressBar);
+    
+    // Status Checks sequentially
+    function typeLine(index) {
+        if (index >= checks.length) return;
+        const checkText = checks[index];
+        const lineDiv = document.createElement("div");
+        lineDiv.className = "boot-line show";
+        if (index > 0) {
+            lineDiv.classList.add("success");
+            lineDiv.innerHTML = `<span class="checkmark">✔</span><span class="line-text"></span>`;
+        } else {
+            lineDiv.innerHTML = `<span class="line-text"></span>`;
+        }
+        
+        const textSpan = lineDiv.querySelector(".line-text");
+        terminalEl.insertBefore(lineDiv, activeLineEl);
+        
+        let charIdx = 0;
+        const fullText = index === 0 ? checkText : checkText.substring(2);
+        
+        function typeChar() {
+            if (charIdx < fullText.length) {
+                textSpan.textContent += fullText[charIdx];
+                charIdx++;
+                terminalEl.scrollTop = terminalEl.scrollHeight;
+                const typingTimeout = setTimeout(typeChar, 5);
+                activeTimeouts.push(typingTimeout);
+            }
+        }
+        typeChar();
+    }
+    
+    checks.forEach((_, index) => {
+        const timeoutId = setTimeout(() => {
+            typeLine(index);
+        }, index * 250);
+        activeTimeouts.push(timeoutId);
+    });
+    
+    // 2.0s: Hide progress & terminal, show final branding sequence
+    const brandingTimeout = setTimeout(() => {
+        terminalEl.style.display = "none";
+        progressContainer.style.display = "none";
+        brandingEl.style.display = "flex";
+    }, 2000);
+    activeTimeouts.push(brandingTimeout);
+    
+    // 2.5s: Begin fadeout, unlock scroll, init component animations
+    const fadeTimeout = setTimeout(() => {
+        bootScreen.classList.add("boot-fade-out");
+        unlockScroll();
+        initializeAllComponents();
+        try {
+            sessionStorage.setItem("bootPlayed", "true");
+        } catch (e) {
+            // Private browsing fallback
+        }
+    }, 2500);
+    activeTimeouts.push(fadeTimeout);
+    
+    // 3.0s: Remove DOM element and cleanup
+    const removeTimeout = setTimeout(() => {
+        cleanupBoot();
+        bootScreen.remove();
+        document.documentElement.classList.remove("boot-active");
+        document.documentElement.classList.add("boot-skipped");
+    }, 3000);
+    activeTimeouts.push(removeTimeout);
+}
+
+function initializeAllComponents() {
     typeAnimation();
     initContactForm();
     initActiveNav();
@@ -954,4 +1147,14 @@ document.addEventListener("DOMContentLoaded", () => {
     initBackToTop();
     initDynamicYear();
     initPremiumCursor();
+}
+
+// Fire up scripts on DOM content ready
+document.addEventListener("DOMContentLoaded", () => {
+    const isSkipped = document.documentElement.classList.contains("boot-skipped");
+    if (isSkipped) {
+        initializeAllComponents();
+    } else {
+        startBootSequence();
+    }
 });

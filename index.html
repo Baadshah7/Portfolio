@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth no-js">
 
 <head>
     <meta charset="UTF-8">
@@ -72,6 +72,61 @@
 </head>
 
 <body class="bg-slate900 text-textLight font-sans antialiased selection:bg-bluePrimary selection:text-white">
+    <script>
+        (function() {
+            document.documentElement.classList.replace('no-js', 'js');
+            var isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var played = false;
+            try {
+                played = sessionStorage.getItem('bootPlayed') === 'true';
+            } catch (e) {
+                played = true; // safe fallback
+            }
+            if (played || isReduced) {
+                document.documentElement.classList.add('boot-skipped');
+            } else {
+                document.documentElement.classList.add('boot-active');
+            }
+        })();
+    </script>
+
+    <!-- Premium Cyber Boot Animation Screen -->
+    <div id="boot-screen" role="status" aria-live="polite" aria-atomic="true">
+        <div class="boot-grid"></div>
+        <div class="boot-scanline"></div>
+        
+        <div class="boot-container">
+            <!-- Logo & Soft Radial Glow -->
+            <div class="boot-logo-wrapper">
+                <div class="boot-glow"></div>
+                <i class="fa-solid fa-shield-halved boot-logo-icon" aria-hidden="true"></i>
+                <div class="boot-logo-text">BAADSHAH7</div>
+                <div class="boot-logo-sub">Cybersecurity Portfolio</div>
+            </div>
+            
+            <!-- Terminal Status Lines -->
+            <div class="boot-terminal" id="boot-terminal">
+                <div class="boot-line active" id="boot-active-line"><span class="boot-cursor">_</span></div>
+            </div>
+            
+            <!-- Progress Indicator -->
+            <div class="boot-progress-container" id="boot-progress-container">
+                <div class="boot-progress-bar-track">
+                    <div class="boot-progress-bar-fill" id="boot-progress-fill"></div>
+                </div>
+                <div class="boot-progress-text" id="boot-progress-text">0%</div>
+            </div>
+
+            <!-- Final Branding Sequence -->
+            <div class="boot-branding" id="boot-branding" style="display: none;">
+                <div class="boot-brand-line">━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+                <div class="boot-brand-access">ACCESS GRANTED</div>
+                <div class="boot-brand-name">BAADSHAH7</div>
+                <div class="boot-brand-sub">Cybersecurity Portfolio</div>
+                <div class="boot-brand-line">━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Premium Custom Cursor -->
     <div id="cursor-dot" aria-hidden="true"></div>
