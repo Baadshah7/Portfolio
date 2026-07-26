@@ -290,13 +290,13 @@ const certificatesData = [
     },
     {
         id: "cert-02",
-        title: "Intro to Artificial Intelligence",
+        title: "AI for Beginners",
         issuer: "HP LIFE",
         category: "ai",
         issueDate: "Sep 2025",
-        credentialId: "HPL-2025-AI-9912",
-        image: "images/certificates/hp_intro_ai.jpg",
-        verifyUrl: "https://www.life-global.org"
+        credentialId: "5e4581d0-ecee-45d5-86e7-3be6656e1e28",
+        image: "images/certificates/AI for Beginner (HP).pdf",
+        verifyUrl: "#"
     },
     {
         id: "cert-03",
@@ -373,7 +373,7 @@ const certificatesData = [
         title: "VES-Hack-It",
         issuer: "Unstop",
         category: "hackathon",
-        issueDate: "Jan 2026",
+        issueDate: "July 2025",
         credentialId: "VES-HACKIT-2026",
         image: "images/certificates/VES Hacakthon Certificate (Unstop) .pdf",
         verifyUrl: "#"
@@ -503,7 +503,8 @@ function renderCertificate(index) {
 
     if (modalDownloadBtn) {
         modalDownloadBtn.href = data.image;
-        modalDownloadBtn.download = `${data.title.replace(/\s+/g, '_')}_Certificate.jpg`;
+        const ext = data.image.toLowerCase().endsWith(".pdf") ? "pdf" : "jpg";
+        modalDownloadBtn.download = `${data.title.replace(/\s+/g, '_')}_Certificate.${ext}`;
     }
 }
 

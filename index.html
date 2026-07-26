@@ -1077,12 +1077,12 @@
                 </button>
             </div>
 
-            <!-- 2. HP LIFE - Intro to AI -->
-            <div data-category="ai" onclick="openCertificateViewer('cert-02', event)" tabindex="0" role="button" aria-label="View Intro to Artificial Intelligence certificate"
+            <!-- 2. HP LIFE - AI for Beginners -->
+            <div data-category="ai" onclick="openCertificateViewer('cert-02', event)" tabindex="0" role="button" aria-label="View AI for Beginners certificate"
                 class="cert-card bg-slate800 border border-slate700 p-6 rounded-xl flex flex-col justify-between hover-lift cursor-pointer group focus:outline-none focus:ring-2 focus:ring-bluePrimary">
                 <div class="space-y-2">
                     <i class="fa-solid fa-robot text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">Intro to Artificial Intelligence</h4>
+                    <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">AI for Beginners</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: HP LIFE</p>
                     <p class="text-xs font-mono text-slate-500">Issued: Sep 2025</p>
                 </div>
@@ -1204,7 +1204,7 @@
                     <i class="fa-solid fa-code text-bluePrimary text-3xl mb-1 group-hover:scale-110 transition-transform"></i>
                     <h4 class="font-bold text-lg text-textLight group-hover:text-bluePrimary transition-colors">VES-Hack-It</h4>
                     <p class="text-sm font-mono text-textMuted">Issuer: Unstop</p>
-                    <p class="text-xs font-mono text-slate-500">Issued: Jan 2026</p>
+                    <p class="text-xs font-mono text-slate-500">Issued: July 2025</p>
                 </div>
                 <button onclick="openCertificateViewer('cert-10', event); event.stopPropagation();"
                     class="mt-4 text-sm font-medium text-bluePrimary group-hover:text-blue-400 flex items-center focus:outline-none">
@@ -1309,21 +1309,6 @@
                     <div class="w-full h-full flex items-center justify-center overflow-auto p-2 cursor-grab active:cursor-grabbing">
                         <img id="cert-modal-img" src="images/cert_placeholder.jpg" alt="Certificate Preview"
                             class="max-w-full max-h-[70vh] object-contain rounded-lg border border-slate700/60 shadow-xl transition-transform duration-200 ease-out origin-center">
-                    </div>
-
-                    <!-- Floating Zoom Controls Bar -->
-                    <div class="mt-4 bg-slate900/90 border border-slate700 px-3 py-1.5 rounded-full flex items-center space-x-3 text-xs font-mono text-textMuted shadow-md z-10">
-                        <button onclick="zoomCertificate(-0.25)" title="Zoom Out" aria-label="Zoom Out" class="p-1 hover:text-bluePrimary transition-colors focus:outline-none">
-                            <i class="fa-solid fa-magnifying-glass-minus text-sm"></i>
-                        </button>
-                        <span id="cert-zoom-level" class="font-bold text-slate-300 w-12 text-center">100%</span>
-                        <button onclick="zoomCertificate(0.25)" title="Zoom In" aria-label="Zoom In" class="p-1 hover:text-bluePrimary transition-colors focus:outline-none">
-                            <i class="fa-solid fa-magnifying-glass-plus text-sm"></i>
-                        </button>
-                        <span class="text-slate-700">|</span>
-                        <button onclick="zoomCertificate(0)" title="Reset Zoom" aria-label="Reset Zoom" class="px-2 py-0.5 rounded bg-slate800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors focus:outline-none text-[10px]">
-                            Reset
-                        </button>
                     </div>
                 </div>
 
