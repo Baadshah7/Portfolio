@@ -461,3 +461,15 @@ body.cursor-enabled .hover-lift {
     transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+/* Custom Global Background Canvas Styling */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    display: block;
+}
+

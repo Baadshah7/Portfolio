@@ -1097,50 +1097,123 @@ function initBackgroundAnimation() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let particleCount = 0;
+    let animationFrameId = null;
 
-    window.addEventListener("resize", () => {
-        width = (canvas.width = window.innerWidth);
-        height = (canvas.height = window.innerHeight);
-    });
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const particles = [];
-    const particleCount = 30; // very low count for subtle texture
-
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            size: Math.random() * 1.5 + 0.5,
-            speedY: -(Math.random() * 0.2 + 0.05), // drifting slowly upwards
-            opacity: Math.random() * 0.12 + 0.03
-        });
+    // Determine particle count based on screen size
+    function getParticleCount() {
+        const w = window.innerWidth;
+        if (w >= 1024) return 70;
+        if (w >= 768) return 45;
+        return 25;
     }
 
-    function animate() {
+    // Initialize particles
+    function initParticles() {
+        particles = [];
+        particleCount = getParticleCount();
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.3, // slow drifting velocity
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 1.5 + 1
+            });
+        }
+    }
+
+    // Resize handler (debounced)
+    let resizeTimeout = null;
+    function handleResize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initParticles();
+        drawFrame(motionQuery.matches);
+    }
+
+    window.addEventListener("resize", () => {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(handleResize, 150);
+    });
+
+    // Set initial size
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    initParticles();
+
+    // Draw plexus constellation
+    function drawFrame(isStatic = false) {
         ctx.clearRect(0, 0, width, height);
-        
-        ctx.fillStyle = "rgba(59, 130, 246, 1)"; // bluePrimary color
-        
+
+        // Draw dots
         for (let i = 0; i < particleCount; i++) {
             const p = particles[i];
-            ctx.globalAlpha = p.opacity;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(59, 130, 246, 0.08)";
             ctx.fill();
 
-            p.y += p.speedY;
-            if (p.y < 0) {
-                p.y = height;
-                p.x = Math.random() * width;
+            // Update position if not static
+            if (!isStatic) {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce boundaries
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
             }
         }
 
-        requestAnimationFrame(animate);
+        // Draw connection lines
+        ctx.lineWidth = 0.75;
+        for (let i = 0; i < particleCount; i++) {
+            for (let j = i + 1; j < particleCount; j++) {
+                const p1 = particles[i];
+                const p2 = particles[j];
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 120) {
+                    const alpha = (1 - dist / 120) * 0.06;
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        }
     }
 
-    animate();
+    function animate() {
+        drawFrame(false);
+        animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function handleMotionPreference() {
+        if (motionQuery.matches) {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            drawFrame(true); // render static single frame
+        } else {
+            if (!animationFrameId) {
+                animate();
+            }
+        }
+    }
+
+    // Set up media query listener & fire initial render
+    motionQuery.addEventListener("change", handleMotionPreference);
+    handleMotionPreference();
 }
 
 function initializeAllComponents() {
