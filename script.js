@@ -1092,7 +1092,59 @@ function startBootSequence() {
     activeTimeouts.push(removeTimeout);
 }
 
+function initBackgroundAnimation() {
+    const canvas = document.getElementById("bg-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener("resize", () => {
+        width = (canvas.width = window.innerWidth);
+        height = (canvas.height = window.innerHeight);
+    });
+
+    const particles = [];
+    const particleCount = 30; // very low count for subtle texture
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 1.5 + 0.5,
+            speedY: -(Math.random() * 0.2 + 0.05), // drifting slowly upwards
+            opacity: Math.random() * 0.12 + 0.03
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        ctx.fillStyle = "rgba(59, 130, 246, 1)"; // bluePrimary color
+        
+        for (let i = 0; i < particleCount; i++) {
+            const p = particles[i];
+            ctx.globalAlpha = p.opacity;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+
+            p.y += p.speedY;
+            if (p.y < 0) {
+                p.y = height;
+                p.x = Math.random() * width;
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
 function initializeAllComponents() {
+    initBackgroundAnimation();
     initContactForm();
     initActiveNav();
     initMobileDrawer();
