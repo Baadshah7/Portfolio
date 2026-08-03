@@ -462,6 +462,14 @@ body.cursor-enabled .hover-lift {
 }
 
 /* Custom Global Background Canvas Styling */
+html {
+    background-color: #0F172A;
+}
+
+body {
+    background-color: transparent !important;
+}
+
 #bg-canvas {
     position: fixed;
     top: 0;

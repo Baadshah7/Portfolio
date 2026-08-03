@@ -1156,7 +1156,7 @@ function initBackgroundAnimation() {
             const p = particles[i];
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(59, 130, 246, 0.08)";
+            ctx.fillStyle = "rgba(59, 130, 246, 0.18)";
             ctx.fill();
 
             // Update position if not static
@@ -1181,7 +1181,7 @@ function initBackgroundAnimation() {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < 120) {
-                    const alpha = (1 - dist / 120) * 0.06;
+                    const alpha = (1 - dist / 120) * 0.12;
                     ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
                     ctx.beginPath();
                     ctx.moveTo(p1.x, p1.y);
