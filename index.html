@@ -877,42 +877,55 @@
             <!-- Project 1: Child Monitoring System -->
             <div
                 class="bg-slate800 border border-slate700 rounded-xl overflow-hidden flex flex-col justify-between group hover-lift transition-all duration-300">
-                <!-- Project Screenshot (Edge-to-Edge) -->
-                <div class="relative w-full h-52 overflow-hidden border-b border-slate700/60 bg-slate900">
-                    <img src="images/child_monitor_app.png" alt="Child Monitoring System mobile GPS app screen mockup showing geofencing dashboard" loading="lazy"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
-                    <div class="absolute inset-0 bg-slate900/10 group-hover:bg-transparent transition-all duration-500"></div>
+                <!-- Project Screenshot (Edge-to-Edge Browser Mockup) -->
+                <div class="relative w-full h-44 overflow-hidden border-b border-slate-700/60 bg-slate-950 flex flex-col">
+                    <!-- Browser Title Bar -->
+                    <div class="flex items-center px-4 py-2.5 bg-slate-900 border-b border-slate-800 space-x-2 select-none">
+                        <div class="flex space-x-1.5">
+                            <span class="w-2 h-2 rounded-full bg-red-500/60"></span>
+                            <span class="w-2 h-2 rounded-full bg-yellow-500/60"></span>
+                            <span class="w-2 h-2 rounded-full bg-green-500/60"></span>
+                        </div>
+                        <div class="flex-1 text-[10px] text-textMuted font-mono text-center pr-10 truncate">
+                            monitorchild.app
+                        </div>
+                    </div>
+                    <!-- Image Area -->
+                    <div class="relative flex-1 overflow-hidden">
+                        <img src="images/child_monitor_app.png" alt="Child Monitoring System mobile GPS app screen mockup showing geofencing dashboard" loading="lazy"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-all duration-500"></div>
+                    </div>
                 </div>
                 <!-- Card Content -->
-                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div class="space-y-4">
+                        <!-- Badge & Title & Description -->
                         <div>
                             <span class="text-[10px] font-mono font-bold uppercase bg-bluePrimary/10 border border-bluePrimary/20 px-2.5 py-0.5 rounded text-bluePrimary">Academic Project</span>
                             <a href="https://github.com/Baadshah7/MonitorChildApp" target="_blank" class="block group/title">
-                                <h3 class="text-2xl font-bold text-textLight group-hover/title:text-bluePrimary transition-colors duration-300 mt-2 flex items-center gap-2">
-                                    Child Monitoring System <i class="fa-solid fa-arrow-up-right-from-square text-xs text-bluePrimary opacity-75 group-hover/title:opacity-100 transition-opacity"></i>
+                                <h3 class="text-xl font-bold text-textLight group-hover/title:text-bluePrimary transition-colors duration-300 mt-1.5 flex items-center gap-1.5">
+                                    Child Monitoring System <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-bluePrimary opacity-75 group-hover/title:opacity-100 transition-opacity"></i>
                                 </h3>
                             </a>
                             <p class="text-xs text-textMuted font-mono mt-1">An IoT-enabled safety tracking app with real-time GPS sync, geofencing, and SOS alerting.</p>
                         </div>
 
-                        <hr class="border-slate-700/60 my-4">
-
-                        <!-- Problem Statement -->
-                        <div class="space-y-1">
-                            <span class="font-mono text-red-400 text-xs font-bold block"><i class="fa-solid fa-circle-exclamation mr-1 text-[10px]" aria-hidden="true"></i> 🎯 Problem Statement</span>
-                            <p class="text-slate-300 text-xs leading-relaxed">Parents lack real-time location visibility and proactive alerting tools to protect children in crowded or unfamiliar environments.</p>
-                        </div>
-
-                        <!-- Solution -->
-                        <div class="space-y-1">
-                            <span class="font-mono text-emerald-400 text-xs font-bold block"><i class="fa-solid fa-shield-halved mr-1 text-[10px]" aria-hidden="true"></i> 🛡️ Solution</span>
-                            <p class="text-slate-300 text-xs leading-relaxed">A Kotlin-based Android app linked to a hardware IoT locator node using Firebase for live location sync, geofencing boundaries, and immediate SOS alerting.</p>
+                        <!-- Problem & Solution Split Layout -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/40 p-3 rounded-lg border border-slate-700/30">
+                            <div class="space-y-0.5">
+                                <span class="font-mono text-red-400 text-[10px] font-bold block"><i class="fa-solid fa-circle-exclamation mr-1 text-[9px]" aria-hidden="true"></i> PROBLEM</span>
+                                <p class="text-slate-300 text-[11px] leading-relaxed">Parents lack real-time location tracking and proactive alerting to protect children in unfamiliar environments.</p>
+                            </div>
+                            <div class="border-t sm:border-t-0 sm:border-l border-slate-700/30 pt-2 sm:pt-0 sm:pl-3 space-y-0.5">
+                                <span class="font-mono text-emerald-400 text-[10px] font-bold block"><i class="fa-solid fa-shield-halved mr-1 text-[9px]" aria-hidden="true"></i> SOLUTION</span>
+                                <p class="text-slate-300 text-[11px] leading-relaxed">Kotlin Android app connected to IoT hardware using Firebase for live GPS sync, geofencing, and SOS alerts.</p>
+                            </div>
                         </div>
 
                         <!-- Tech Stack -->
                         <div class="space-y-1.5">
-                            <span class="font-mono text-bluePrimary text-xs font-bold block"><i class="fa-solid fa-gears mr-1 text-[10px]" aria-hidden="true"></i> ⚙️ Technology Stack</span>
+                            <span class="font-mono text-bluePrimary text-[10px] font-bold block"><i class="fa-solid fa-gears mr-1 text-[9px]" aria-hidden="true"></i> TECHNOLOGY STACK</span>
                             <div class="flex flex-wrap gap-1.5">
                                 <span class="text-[9px] font-mono bg-slate-900 border border-slate-700/60 px-2 py-0.5 rounded text-textMuted">Android</span>
                                 <span class="text-[9px] font-mono bg-slate-900 border border-slate-700/60 px-2 py-0.5 rounded text-textMuted">Kotlin</span>
@@ -924,32 +937,34 @@
 
                         <!-- Key Features -->
                         <div class="space-y-1.5">
-                            <span class="font-mono text-bluePrimary text-xs font-bold block"><i class="fa-solid fa-star mr-1 text-[10px]" aria-hidden="true"></i> ⭐ Key Features</span>
-                            <ul class="space-y-1 pl-4 list-disc text-xs text-textMuted">
-                                <li>Real-time GPS mapping & location tracking</li>
-                                <li>Dynamic Geofencing & instant notifications</li>
-                                <li>SOS emergency panic trigger for immediate help</li>
+                            <span class="font-mono text-bluePrimary text-[10px] font-bold block"><i class="fa-solid fa-star mr-1 text-[9px]" aria-hidden="true"></i> KEY FEATURES</span>
+                            <ul class="space-y-1 text-[11px] text-textMuted">
+                                <li class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-bluePrimary text-[9px]" aria-hidden="true"></i>
+                                    <span>Real-time GPS mapping & location tracking</span>
+                                </li>
+                                <li class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-bluePrimary text-[9px]" aria-hidden="true"></i>
+                                    <span>Dynamic Geofencing & instant notifications</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Status & Buttons -->
-                    <div class="pt-4 border-t border-slate-700/50 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono text-textMuted">Status:</span>
-                            <span class="text-[10px] font-mono font-bold uppercase bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded text-emerald-400 flex items-center gap-1.5">
-                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 🟢 Completed
-                            </span>
-                        </div>
+                    <div class="pt-3 border-t border-slate-700/50 flex items-center justify-between gap-3">
+                        <span class="text-[10px] font-mono font-bold uppercase bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded text-emerald-400 flex items-center gap-1.5 select-none">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Completed
+                        </span>
 
-                        <div class="flex gap-4">
+                        <div class="flex gap-2">
                             <a href="https://github.com/Baadshah7/MonitorChildApp" target="_blank"
-                                class="flex-1 py-2.5 bg-slate-900 hover:bg-slate-950 border border-slate700 hover:border-slate600 text-textLight text-xs font-mono font-bold rounded flex items-center justify-center gap-2 transition-all duration-300">
-                                <i class="fa-brands fa-github text-sm"></i> GitHub Repository
+                                class="px-3 py-1.5 bg-slate-900 hover:bg-slate-950 border border-slate700 hover:border-slate600 text-textLight text-xs font-mono font-bold rounded-lg flex items-center gap-1.5 transition-all duration-300">
+                                <i class="fa-brands fa-github text-sm"></i> Code
                             </a>
                             <a href="assets/docs/Child%20Monitoring%20System%20Documentation.pdf" target="_blank" rel="noopener noreferrer"
-                                class="flex-1 py-2.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded flex items-center justify-center gap-2 transition-all duration-300">
-                                <i class="fa-solid fa-file-invoice text-xs" aria-hidden="true"></i> Documentation
+                                class="px-3 py-1.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded-lg flex items-center gap-1.5 transition-all duration-300">
+                                <i class="fa-solid fa-file-invoice text-xs" aria-hidden="true"></i> Docs
                             </a>
                         </div>
                     </div>
@@ -959,38 +974,51 @@
             <!-- Project 2: USB Write Blocker -->
             <div
                 class="bg-slate800 border border-slate700 rounded-xl overflow-hidden flex flex-col justify-between group hover-lift transition-all duration-300">
-                <!-- Project Screenshot (Edge-to-Edge) -->
-                <div class="relative w-full h-52 overflow-hidden border-b border-slate700/60 bg-slate900">
-                    <img src="images/usb_blocker_dashboard.png" alt="USB Write Blocker digital forensics analysis dashboard interface mockup" loading="lazy"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
-                    <div class="absolute inset-0 bg-slate900/10 group-hover:bg-transparent transition-all duration-500"></div>
+                <!-- Project Screenshot (Edge-to-Edge Browser Mockup) -->
+                <div class="relative w-full h-44 overflow-hidden border-b border-slate-700/60 bg-slate-950 flex flex-col">
+                    <!-- Browser Title Bar -->
+                    <div class="flex items-center px-4 py-2.5 bg-slate-900 border-b border-slate-800 space-x-2 select-none">
+                        <div class="flex space-x-1.5">
+                            <span class="w-2 h-2 rounded-full bg-red-500/60"></span>
+                            <span class="w-2 h-2 rounded-full bg-yellow-500/60"></span>
+                            <span class="w-2 h-2 rounded-full bg-green-500/60"></span>
+                        </div>
+                        <div class="flex-1 text-[10px] text-textMuted font-mono text-center pr-10 truncate">
+                            usb-write-blocker.local
+                        </div>
+                    </div>
+                    <!-- Image Area -->
+                    <div class="relative flex-1 overflow-hidden">
+                        <img src="images/usb_blocker_dashboard.png" alt="USB Write Blocker digital forensics analysis dashboard interface mockup" loading="lazy"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                        <div class="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-all duration-500"></div>
+                    </div>
                 </div>
                 <!-- Card Content -->
-                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div class="space-y-4">
+                        <!-- Badge & Title & Description -->
                         <div>
                             <span class="text-[10px] font-mono font-bold uppercase bg-bluePrimary/10 border border-bluePrimary/20 px-2.5 py-0.5 rounded text-bluePrimary">Internship Project</span>
-                            <h3 class="text-2xl font-bold text-textLight group-hover:text-bluePrimary transition-colors duration-300 mt-2">USB Write Blocker</h3>
+                            <h3 class="text-xl font-bold text-textLight mt-1.5">USB Write Blocker</h3>
                             <p class="text-xs text-textMuted font-mono mt-1">A hybrid hardware-software digital forensics tool to protect target media from data alteration.</p>
                         </div>
 
-                        <hr class="border-slate-700/60 my-4">
-
-                        <!-- Problem Statement -->
-                        <div class="space-y-1">
-                            <span class="font-mono text-red-400 text-xs font-bold block"><i class="fa-solid fa-circle-exclamation mr-1 text-[10px]" aria-hidden="true"></i> 🎯 Problem Statement</span>
-                            <p class="text-slate-300 text-xs leading-relaxed">Connecting suspect media directly to analysis hosts modifies timestamps or writes system data, destroying the integrity and admissibility of legal evidence.</p>
-                        </div>
-
-                        <!-- Solution -->
-                        <div class="space-y-1">
-                            <span class="font-mono text-emerald-400 text-xs font-bold block"><i class="fa-solid fa-shield-halved mr-1 text-[10px]" aria-hidden="true"></i> 🛡️ Solution</span>
-                            <p class="text-slate-300 text-xs leading-relaxed">Designed an Arduino bridge that intercepts hardware write signals, coupled with a Python mounting script for read-only filesystem attachment in Kali Linux.</p>
+                        <!-- Problem & Solution Split Layout -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-900/40 p-3 rounded-lg border border-slate-700/30">
+                            <div class="space-y-0.5">
+                                <span class="font-mono text-red-400 text-[10px] font-bold block"><i class="fa-solid fa-circle-exclamation mr-1 text-[9px]" aria-hidden="true"></i> PROBLEM</span>
+                                <p class="text-slate-300 text-[11px] leading-relaxed">Connecting suspect media directly to analysis hosts modifies timestamps or writes system data, destroying evidence integrity.</p>
+                            </div>
+                            <div class="border-t sm:border-t-0 sm:border-l border-slate-700/30 pt-2 sm:pt-0 sm:pl-3 space-y-0.5">
+                                <span class="font-mono text-emerald-400 text-[10px] font-bold block"><i class="fa-solid fa-shield-halved mr-1 text-[9px]" aria-hidden="true"></i> SOLUTION</span>
+                                <p class="text-slate-300 text-[11px] leading-relaxed">Arduino bridge intercepts hardware write signals, coupled with Python mounting script for read-only Kali Linux attachment.</p>
+                            </div>
                         </div>
 
                         <!-- Tech Stack -->
                         <div class="space-y-1.5">
-                            <span class="font-mono text-bluePrimary text-xs font-bold block"><i class="fa-solid fa-gears mr-1 text-[10px]" aria-hidden="true"></i> ⚙️ Technology Stack</span>
+                            <span class="font-mono text-bluePrimary text-[10px] font-bold block"><i class="fa-solid fa-gears mr-1 text-[9px]" aria-hidden="true"></i> TECHNOLOGY STACK</span>
                             <div class="flex flex-wrap gap-1.5">
                                 <span class="text-[9px] font-mono bg-slate-900 border border-slate-700/60 px-2.5 py-0.5 rounded text-textMuted">Python</span>
                                 <span class="text-[9px] font-mono bg-slate-900 border border-slate-700/60 px-2.5 py-0.5 rounded text-textMuted">Arduino Uno</span>
@@ -1001,32 +1029,34 @@
 
                         <!-- Key Features -->
                         <div class="space-y-1.5">
-                            <span class="font-mono text-bluePrimary text-xs font-bold block"><i class="fa-solid fa-star mr-1 text-[10px]" aria-hidden="true"></i> ⭐ Key Features</span>
-                            <ul class="space-y-1 pl-4 list-disc text-xs text-textMuted">
-                                <li>Hardware-level write inhibition via blocking bridge</li>
-                                <li>Automated read-only device mounting daemon</li>
-                                <li>Integrity validation using automatic SHA-256 hashing</li>
+                            <span class="font-mono text-bluePrimary text-[10px] font-bold block"><i class="fa-solid fa-star mr-1 text-[9px]" aria-hidden="true"></i> KEY FEATURES</span>
+                            <ul class="space-y-1 text-[11px] text-textMuted">
+                                <li class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-bluePrimary text-[9px]" aria-hidden="true"></i>
+                                    <span>Hardware-level write inhibition via blocking bridge</span>
+                                </li>
+                                <li class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-bluePrimary text-[9px]" aria-hidden="true"></i>
+                                    <span>Integrity validation using automatic SHA-256 hashing</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Status & Buttons -->
-                    <div class="pt-4 border-t border-slate-700/50 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-mono text-textMuted">Status:</span>
-                            <span class="text-[10px] font-mono font-bold uppercase bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded text-emerald-400 flex items-center gap-1.5">
-                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 🟢 Completed
-                            </span>
-                        </div>
+                    <div class="pt-3 border-t border-slate-700/50 flex items-center justify-between gap-3">
+                        <span class="text-[10px] font-mono font-bold uppercase bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded text-emerald-400 flex items-center gap-1.5 select-none">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Completed
+                        </span>
 
-                        <div class="flex gap-4">
+                        <div class="flex gap-2">
                             <a href="assets/docs/USB%20Hardware%20Documentation.pdf" target="_blank" rel="noopener noreferrer"
-                                class="flex-1 py-2.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded flex items-center justify-center gap-2 transition-all duration-300">
-                                <i class="fa-solid fa-file-invoice text-xs" aria-hidden="true"></i> Hardware Documentation
+                                class="px-3 py-1.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded-lg flex items-center gap-1.5 transition-all duration-300">
+                                <i class="fa-solid fa-file-invoice text-xs" aria-hidden="true"></i> HW Docs
                             </a>
                             <a href="assets/docs/USB%20Software%20Documentation.pdf" target="_blank" rel="noopener noreferrer"
-                                class="flex-1 py-2.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded flex items-center justify-center gap-2 transition-all duration-300">
-                                <i class="fa-solid fa-file-invoice text-xs" aria-hidden="true"></i> Software Documentation
+                                class="px-3 py-1.5 bg-bluePrimary/10 hover:bg-bluePrimary/20 border border-bluePrimary/30 hover:border-bluePrimary/50 text-bluePrimary text-xs font-mono font-bold rounded-lg flex items-center gap-1.5 transition-all duration-300">
+                                <i class="fa-solid fa-file-invoice text-xs" aria-hidden="true"></i> SW Docs
                             </a>
                         </div>
                     </div>
