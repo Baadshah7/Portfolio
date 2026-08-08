@@ -259,6 +259,86 @@ function renderPdfOnCanvas(pdfUrl) {
     });
 }
 
+function detectContentBoundingBox(canvas, threshold = 245) {
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width;
+    const height = canvas.height;
+    const imgData = ctx.getImageData(0, 0, width, height);
+    const data = imgData.data;
+
+    let top = 0;
+    let bottom = height - 1;
+    let left = 0;
+    let right = width - 1;
+
+    // Scan from top to bottom
+    let found = false;
+    for (let y = 0; y < height; y += 4) {
+        for (let x = 0; x < width; x += 4) {
+            const idx = (y * width + x) * 4;
+            if (data[idx] < threshold || data[idx + 1] < threshold || data[idx + 2] < threshold) {
+                top = y;
+                found = true;
+                break;
+            }
+        }
+        if (found) break;
+    }
+
+    // Scan from bottom to top
+    found = false;
+    for (let y = height - 1; y >= 0; y -= 4) {
+        for (let x = 0; x < width; x += 4) {
+            const idx = (y * width + x) * 4;
+            if (data[idx] < threshold || data[idx + 1] < threshold || data[idx + 2] < threshold) {
+                bottom = y;
+                found = true;
+                break;
+            }
+        }
+        if (found) break;
+    }
+
+    // Scan from left to right
+    found = false;
+    for (let x = 0; x < width; x += 4) {
+        for (let y = 0; y < height; y += 4) {
+            const idx = (y * width + x) * 4;
+            if (data[idx] < threshold || data[idx + 1] < threshold || data[idx + 2] < threshold) {
+                left = x;
+                found = true;
+                break;
+            }
+        }
+        if (found) break;
+    }
+
+    // Scan from right to left
+    found = false;
+    for (let x = width - 1; x >= 0; x -= 4) {
+        for (let y = 0; y < height; y += 4) {
+            const idx = (y * width + x) * 4;
+            if (data[idx] < threshold || data[idx + 1] < threshold || data[idx + 2] < threshold) {
+                right = x;
+                found = true;
+                break;
+            }
+        }
+        if (found) break;
+    }
+
+    if (left >= right) {
+        left = 0;
+        right = width - 1;
+    }
+    if (top >= bottom) {
+        top = 0;
+        bottom = height - 1;
+    }
+
+    return { top, bottom, left, right };
+}
+
 function drawPdfPage() {
     if (!currentPdfDocument) return;
 
@@ -274,22 +354,18 @@ function drawPdfPage() {
         if (W <= 0) W = window.innerWidth * 0.6;
         if (H <= 0) H = window.innerHeight * 0.65;
 
-        const unscaledViewport = page.getViewport({ scale: 1 });
-        const scaleX = W / unscaledViewport.width;
-        const scaleY = H / unscaledViewport.height;
-        const fitScale = Math.min(scaleX, scaleY);
-
         const pixelRatio = window.devicePixelRatio || 1;
-        const renderScale = fitScale * pixelRatio;
-        const viewport = page.getViewport({ scale: renderScale });
+        // Render at a high, crisp baseline scale (2.0 * devicePixelRatio) on offscreen canvas
+        const baselineScale = 2.0 * pixelRatio;
+        const viewport = page.getViewport({ scale: baselineScale });
 
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        canvas.style.width = `${viewport.width / pixelRatio}px`;
-        canvas.style.height = `${viewport.height / pixelRatio}px`;
+        const tempCanvas = document.createElement("canvas");
+        tempCanvas.width = viewport.width;
+        tempCanvas.height = viewport.height;
+        const tempCtx = tempCanvas.getContext("2d");
 
         const renderContext = {
-            canvasContext: ctx,
+            canvasContext: tempCtx,
             viewport: viewport
         };
 
@@ -300,6 +376,53 @@ function drawPdfPage() {
         currentPdfRenderTask = page.render(renderContext);
         currentPdfRenderTask.promise.then(() => {
             currentPdfRenderTask = null;
+
+            // Detect bounding box of content (near-white threshold: 245)
+            const bbox = detectContentBoundingBox(tempCanvas, 245);
+
+            // Add padding buffer around content (in CSS px, then scaled to physical tempCanvas px)
+            const paddingCSS = 20;
+            const paddingPhys = Math.round(paddingCSS * baselineScale);
+
+            let cropL = Math.max(0, bbox.left - paddingPhys);
+            let cropT = Math.max(0, bbox.top - paddingPhys);
+            let cropR = Math.min(tempCanvas.width - 1, bbox.right + paddingPhys);
+            let cropB = Math.min(tempCanvas.height - 1, bbox.bottom + paddingPhys);
+
+            let cropW = cropR - cropL;
+            let cropH = cropB - cropT;
+
+            if (cropW <= 0 || cropH <= 0) {
+                cropL = 0;
+                cropT = 0;
+                cropW = tempCanvas.width;
+                cropH = tempCanvas.height;
+            }
+
+            // Convert cropped dimensions from baseline physical pixels back to CSS pixels
+            const cropW_css = cropW / baselineScale;
+            const cropH_css = cropH / baselineScale;
+
+            // Calculate scale to fit the cropped area to container (W, H)
+            const scaleX = W / cropW_css;
+            const scaleY = H / cropH_css;
+            const fitScale = Math.min(scaleX, scaleY);
+
+            // Size the display canvas to target fit dimensions (physical device pixels)
+            canvas.width = Math.round(cropW_css * fitScale * pixelRatio);
+            canvas.height = Math.round(cropH_css * fitScale * pixelRatio);
+
+            // Size the style dimensions (CSS pixels)
+            canvas.style.width = `${Math.round(cropW_css * fitScale)}px`;
+            canvas.style.height = `${Math.round(cropH_css * fitScale)}px`;
+
+            // Draw the cropped region from tempCanvas to displayCanvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(
+                tempCanvas,
+                cropL, cropT, cropW, cropH, // Source region
+                0, 0, canvas.width, canvas.height // Destination rect
+            );
         }).catch(err => {
             if (err.name !== "RenderingCancelledException") {
                 console.error("PDF render error:", err);
