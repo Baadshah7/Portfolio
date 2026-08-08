@@ -1340,6 +1340,7 @@
                     <div class="w-full h-full flex items-center justify-center overflow-auto p-2 cursor-grab active:cursor-grabbing">
                         <img id="cert-modal-img" src="images/cert_placeholder.jpg" alt="Certificate Preview"
                             class="max-w-full max-h-[70vh] object-contain rounded-lg border border-slate700/60 shadow-xl transition-transform duration-200 ease-out origin-center">
+                        <canvas id="cert-modal-canvas" class="hidden rounded-lg border border-slate700/60 shadow-xl transition-transform duration-200 ease-out origin-center"></canvas>
                     </div>
                 </div>
 
@@ -1547,6 +1548,7 @@
             document.body.style.overflow = 'auto';
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="script.js"></script>
 
     <!-- Back to Top Button -->

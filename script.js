@@ -233,6 +233,92 @@ function initScrollProgress() {
     });
 }
 
+// Configure PDF.js Worker
+if (window.pdfjsLib) {
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
+let currentPdfRenderTask = null;
+let currentPdfDocument = null;
+
+function renderPdfOnCanvas(pdfUrl) {
+    const canvas = document.getElementById("cert-modal-canvas");
+    if (!canvas) return;
+
+    // Cancel any ongoing rendering
+    if (currentPdfRenderTask) {
+        currentPdfRenderTask.cancel();
+        currentPdfRenderTask = null;
+    }
+
+    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+        currentPdfDocument = pdf;
+        drawPdfPage();
+    }).catch(err => {
+        console.error("Error loading PDF: ", err);
+    });
+}
+
+function drawPdfPage() {
+    if (!currentPdfDocument) return;
+
+    currentPdfDocument.getPage(1).then(page => {
+        const canvas = document.getElementById("cert-modal-canvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+
+        const container = canvas.parentNode;
+        let W = container.clientWidth - 16;
+        let H = container.clientHeight - 16;
+
+        if (W <= 0) W = window.innerWidth * 0.6;
+        if (H <= 0) H = window.innerHeight * 0.65;
+
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const scaleX = W / unscaledViewport.width;
+        const scaleY = H / unscaledViewport.height;
+        const fitScale = Math.min(scaleX, scaleY);
+
+        const pixelRatio = window.devicePixelRatio || 1;
+        const renderScale = fitScale * pixelRatio;
+        const viewport = page.getViewport({ scale: renderScale });
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.style.width = `${viewport.width / pixelRatio}px`;
+        canvas.style.height = `${viewport.height / pixelRatio}px`;
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+
+        if (currentPdfRenderTask) {
+            currentPdfRenderTask.cancel();
+        }
+
+        currentPdfRenderTask = page.render(renderContext);
+        currentPdfRenderTask.promise.then(() => {
+            currentPdfRenderTask = null;
+        }).catch(err => {
+            if (err.name !== "RenderingCancelledException") {
+                console.error("PDF render error:", err);
+            }
+        });
+    });
+}
+
+// Responsive resize handler for PDF rendering
+window.addEventListener("resize", () => {
+    const canvas = document.getElementById("cert-modal-canvas");
+    if (canvas && !canvas.classList.contains("hidden") && currentPdfDocument) {
+        if (window.pdfResizeTimeout) clearTimeout(window.pdfResizeTimeout);
+        window.pdfResizeTimeout = setTimeout(() => {
+            drawPdfPage();
+        }, 150);
+    }
+});
+
 // 📜 CERTIFICATIONS DATA REGISTRY & VIEWER ENGINE
 const certificatesData = [
     {
@@ -421,21 +507,18 @@ function renderCertificate(index) {
     if (modalDate) modalDate.textContent = data.issueDate;
     if (modalCredId) modalCredId.textContent = data.credentialId || "N/A";
     
+    const modalCanvas = document.getElementById("cert-modal-canvas");
     let modalPdf = document.getElementById("cert-modal-pdf");
+    if (modalPdf) modalPdf.classList.add("hidden");
+    
     if (data.image && data.image.toLowerCase().endsWith(".pdf")) {
         if (modalImg) modalImg.classList.add("hidden");
-        if (!modalPdf) {
-            modalPdf = document.createElement("iframe");
-            modalPdf.id = "cert-modal-pdf";
-            modalPdf.className = "w-full h-[70vh] rounded-lg border border-slate700/60 shadow-xl bg-slate900";
-            if (modalImg && modalImg.parentNode) {
-                modalImg.parentNode.appendChild(modalPdf);
-            }
+        if (modalCanvas) {
+            modalCanvas.classList.remove("hidden");
+            renderPdfOnCanvas(data.image);
         }
-        modalPdf.src = data.image;
-        modalPdf.classList.remove("hidden");
     } else {
-        if (modalPdf) modalPdf.classList.add("hidden");
+        if (modalCanvas) modalCanvas.classList.add("hidden");
         if (modalImg) {
             modalImg.classList.remove("hidden");
             modalImg.onerror = function() {
@@ -460,16 +543,20 @@ function renderCertificate(index) {
 
     if (modalDownloadBtn) {
         modalDownloadBtn.href = data.image;
-        const ext = data.image.toLowerCase().endsWith(".pdf") ? "pdf" : "jpg";
+        const ext = data.image.split('.').pop().toLowerCase();
         modalDownloadBtn.download = `${data.title.replace(/\s+/g, '_')}_Certificate.${ext}`;
     }
 }
 
 function applyZoom() {
     const modalImg = document.getElementById("cert-modal-img");
+    const modalCanvas = document.getElementById("cert-modal-canvas");
     const zoomVal = document.getElementById("cert-zoom-level");
     if (modalImg) {
         modalImg.style.transform = `scale(${currentZoomScale})`;
+    }
+    if (modalCanvas) {
+        modalCanvas.style.transform = `scale(${currentZoomScale})`;
     }
     if (zoomVal) {
         zoomVal.textContent = `${Math.round(currentZoomScale * 100)}%`;
@@ -550,18 +637,24 @@ function closeCertificateViewer() {
 function initCertificateViewer() {
     const modal = document.getElementById("cert-viewer-modal");
     const modalImg = document.getElementById("cert-modal-img");
+    const modalCanvas = document.getElementById("cert-modal-canvas");
     if (!modal) return;
+
+    const toggleZoom = () => {
+        if (currentZoomScale === 1) {
+            currentZoomScale = 2;
+        } else {
+            currentZoomScale = 1;
+        }
+        applyZoom();
+    };
 
     // Double-click / Double-tap zoom toggle between 100% and 200%
     if (modalImg) {
-        modalImg.addEventListener("dblclick", () => {
-            if (currentZoomScale === 1) {
-                currentZoomScale = 2;
-            } else {
-                currentZoomScale = 1;
-            }
-            applyZoom();
-        });
+        modalImg.addEventListener("dblclick", toggleZoom);
+    }
+    if (modalCanvas) {
+        modalCanvas.addEventListener("dblclick", toggleZoom);
     }
 
     // Focus trapping & extended keyboard navigation
